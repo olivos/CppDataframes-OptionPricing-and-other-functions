@@ -1,0 +1,90 @@
+/*
+ * brw.cpp
+ *
+ *  Created on: Jul 24, 2018
+ *      Author: oliv
+ */
+
+#include "brw.h"
+#include <random>
+#include <ctime>
+#include <armadillo>
+#include "timeVec.h"
+
+namespace bm {
+
+brw::brw() {
+	// TODO Auto-generated constructor stub
+
+}
+
+brw::brw(int lon, double fin) : N(lon), T(fin), nb(1) {
+	{
+		hT = T/N;
+		Sn = arma::mat(nb,N,arma::fill::zeros);
+
+		std::random_device generator (time(NULL));
+		std::normal_distribution<double> distribution(0,hT);
+
+		Sn(0) = distribution(generator);
+		for (int i = 0 ; i < nb ; i++){
+			Sn(i,0) = distribution(generator);
+			for(int j = 1 ; j < N ; j++ ){
+						Sn(i,j) = Sn(i,j-1) + distribution(generator);
+					}
+		}
+		std::cout << Sn(1,0);
+	}
+}
+
+brw::~brw() {
+	// TODO Auto-generated destructor stub
+}
+
+
+
+double brw::operator ()(double t) {
+	int n = t/hT;
+	switch( n){
+	case 0 : return 0;
+	default : return Sn(0,n-1);
+}}
+
+double brw::operator ()(double t, int ligne) {
+	int n = t/hT;
+	switch( n){
+	case 0 : return 0;
+	default : return Sn(ligne,n-1);
+}}
+
+//double brw::operator ()(int i) {
+//	switch( i){
+//	case 0 : return 0;
+//	default : return Sn(i-1);}
+//
+//}
+
+brw::brw(int lon, double fin, int nb) : nb(nb), T(fin) , N(lon) {
+		hT = T/N;
+		Sn = arma::mat(nb,N,arma::fill::zeros);
+
+		std::default_random_engine generator;
+		std::normal_distribution<double> distribution(0,hT);
+
+		for (int i = 0 ; i < nb ; i++){
+
+			Sn(i,0) = distribution(generator);
+			for(int j = 1 ; j < N ; j++ ){
+						Sn(i,j) = Sn(i,j-1) + distribution(generator);
+					}
+		}
+}
+
+
+timeVec brw::tVec() {
+	timeVec t = timeVec(N,0.,T);
+	return t;
+}
+
+} /* namespace bm */
+

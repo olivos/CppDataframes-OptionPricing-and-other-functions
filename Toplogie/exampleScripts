@@ -1,0 +1,45 @@
+// DIFFERNETIATE VFUN with input space of size 2
+
+
+#include <iostream>
+#include <armadillo>
+#include <math.h>
+#include "vecSpace.h"
+#include "realSpace.h"
+#include "fun.h"
+#include "vfun.h"
+#include "ed.h"
+#include "brw.h"
+#include "stoch.h"
+#include "func.h"
+#include "bs.h"
+#include "euCall.h"
+#include "Ndist.h"
+#include "outputC.h"
+
+
+using namespace arma;
+using namespace std;
+using namespace vSpace;
+
+
+
+
+int main() {
+
+	realSpace X = realSpace(0,10,10);
+	realSpace Y = realSpace(0,10,10);
+	mat M = mat(11,11);
+	for (int i = 0; i<11 ; i++){
+		for (int j = 0 ; j <11 ; j++){
+		M(i,j) = 2  *i;
+		}
+	}
+	cout << M;
+	vecSpace E = vecSpace(X,Y);
+	vfun F  = vfun(E,M);
+	cout << func::diff(F,1,1,1);
+
+
+return 0;
+}
