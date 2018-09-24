@@ -85,7 +85,7 @@ int main() {
 	vfun Vf = vfun(T,func::arc(S,BS));
 
 	outputC::write(T,Vf);
-
+// yolo
 	vfun bank = vfun(T,B);
 	cout << bank;
 return 0;
