@@ -27,7 +27,6 @@ double vSpace::vfun::operator ()(double x, double y) {
 	return M(i,j);
 }
 
-
 //arma::vec vSpace::vfun::diff() {
 //	int nx = sizes(0);
 //	double hx = deltas(0);
@@ -45,5 +44,4 @@ double vSpace::vfun::operator ()(double x, double y) {
 
 
 } /* namespace vSpace */
-
 

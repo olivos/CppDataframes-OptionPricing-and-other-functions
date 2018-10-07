@@ -30,9 +30,28 @@ using namespace arma;
 using namespace std;
 using namespace vSpace;
 
-double f (double x){
-	return pow(cos(x),2);
+double a0 (double x){
+	return 1;}
+double a1 (double x){
+	return 0;}
+double a2 (double x){
+	return 0;}
+double sol (double x, double t){
+	return exp(t);
 }
+double u0 (double x){
+	return sol(x,0);
+}
+double umin(double t){
+	return sol(0,t);
+}
+double umax(double t){
+	return sol(10,t);
+}
+double f (double x){
+	return pow(x,2);
+}
+
 
 void split(const string &chaine, char delimiteur, vector<string> &elements)
 {
@@ -53,10 +72,50 @@ vector<string> split(const string &chaine, char delimiteur)
 }
 
 int main() {
-	realSpace K =  realSpace(0,2*M_PI,100);
-	fun F = fun(K,f);
-	cout << func::dMean(F);
 
+//	fun A0 = fun(X,a0);
+//	fun A1 = fun(X,a1);
+//	fun A2 = fun(X,a2);
+//	fun U0 = fun(X,u0);
+//	fun Umin = fun(T,umin);
+//	fun Umax = fun(T,umax);
+
+
+//	realSpace T = realSpace(0,1,100); /* time */
+////	Parameters to model euCall
+//	double sigma = 0.1;
+//	double r = 0.05;
+//	double K = 5;
+////	Parameters to simulate the underlying price
+//	double mu = 0;
+//	double trueSigma = sigma;
+//	double S0 = 5;
+//
+//	bs BS  = bs(T,mu,sigma,S0,2);
+////	cout << BS << endl;
+//	realSpace X = func::OutputSpace(BS);
+////	cout << X <<endl;
+//	euCall C = euCall(T,X,sigma,r,K);
+//
+//	vec B = C.HedgingPortfolio(BS,T, mu,  trueSigma,  S0);
+//
+//	vfun S = vfun(vecSpace(T,X),C.surface() );
+//
+//	vfun Vf = vfun(T,func::arc(S,BS));
+//
+//	outputC::write(T,Vf);
+//// yolo
+//	vfun bank = vfun(T,B);
+//	cout << bank;
+
+	realSpace T = realSpace(0,0.144,100);
+	realSpace X = realSpace(0,600,100);
+	euCall C = euCall(T,X,0.6657,0.03,280);
+//	cout << C(0,281.83);
+
+	vec v = input::inputStock("/Users/oliv/Documents/ColumbiaMSOR/Programming/snp500.csv");
+	vfun snp = vfun(realSpace(0,1,v.n_rows - 1),v);
+	cout << snp;
 
 
 return 0;

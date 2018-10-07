@@ -38,7 +38,6 @@ public:
 
 //	computes discrete mean of a function of a realSpace
 	static double dMean(function& f);
-yyou
 
 private:
 	func();

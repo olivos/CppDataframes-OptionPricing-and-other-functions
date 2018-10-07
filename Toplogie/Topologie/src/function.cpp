@@ -21,11 +21,8 @@ double function::operator ()(double x) {
 	return 1;
 }
 
-
-
 function::~function() {
 	// TODO Auto-generated destructor stub
 }
 
 } /* namespace vSpace */
-

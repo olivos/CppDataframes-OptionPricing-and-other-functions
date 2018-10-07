@@ -15,6 +15,7 @@ namespace vSpace {
 class function: public vecSpace {
 public:
 	virtual double operator() (double x);
+	virtual function operator+ (function & g);
 
 
 protected :
