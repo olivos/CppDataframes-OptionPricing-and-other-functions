@@ -12,6 +12,7 @@
 #include "brw.h"
 #include <string>
 #include "input.h"
+#include "function.h"
 
 namespace vSpace {
 
@@ -21,7 +22,8 @@ public:
 	static arma::vec E( stochastic & Xt);
 
 //  Variance of a function (signle path)
-
+//	static double V( vfun& Xt);
+//
 
 
 private :

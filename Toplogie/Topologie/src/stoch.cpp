@@ -30,7 +30,9 @@ vec stoch::E(stochastic& Xt) {
 	return res;
 }
 
-
+//double stoch::V(vfun& Xt) {
+//	double m = dMean(f)
+//}
 
 stoch::~stoch() {
 	// TODO Auto-generated destructor stub

@@ -31,7 +31,7 @@ using namespace std;
 using namespace vSpace;
 
 double f (double x){
-	return pow(cos(x),2);
+	return pow(exp(x),2);
 }
 
 void split(const string &chaine, char delimiteur, vector<string> &elements)
@@ -53,9 +53,9 @@ vector<string> split(const string &chaine, char delimiteur)
 }
 
 int main() {
-	realSpace K =  realSpace(0,2*M_PI,100);
+	realSpace K =  realSpace(0,1,100);
 	fun F = fun(K,f);
-	cout << func::dMean(F);
+	cout << func::dMean(F,log);
 
 
 
