@@ -38,7 +38,12 @@ public:
 
 //	computes discrete mean of a function of a realSpace
 	static double dMean(function& f);
+<<<<<<< HEAD
 yooo
+=======
+yyou
+
+>>>>>>> parent of e6269a5... Revert "mean"
 private:
 	func();
 	virtual ~func();

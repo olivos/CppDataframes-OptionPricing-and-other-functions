@@ -17,7 +17,11 @@ namespace vSpace {
 
 class stoch {
 public:
+//	For a stochastic process with several paths, compute the expected value at time t
 	static arma::vec E( stochastic & Xt);
+
+//  Variance of a function (signle path)
+
 
 
 private :
