@@ -177,6 +177,17 @@ arma::vec func::arc(vfun& f, function& phi) {
 	return V;
 }
 
+double func::dMean(function& f) {
+	realSpace X = f.getX();
+	int n  = X.getNx();
+	double m = 0;
+
+	for(int i = 0 ; i < n+1 ; i++){
+		m += f(X(i));
+	}
+	return m/(n+1);
+}
+
 
 
 func::~func() {

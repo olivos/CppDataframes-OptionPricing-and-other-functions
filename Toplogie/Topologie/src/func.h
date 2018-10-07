@@ -36,6 +36,10 @@ public:
 	static arma::vec prim( function & f, double a); /* primitive nul in a  SLOWER than the previous method (calls V = prim(f), gets the value in a and then subtracts it to V)*/
 	static double integ( function & f, double a , double b); /* Value of integral between a and b */
 
+//	computes discrete mean of a function of a realSpace
+	static double dMean(function& f);
+yyo
+
 private:
 	func();
 	virtual ~func();
