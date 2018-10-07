@@ -31,9 +31,11 @@ vec stoch::E(stochastic& Xt) {
 }
 
 
+
 stoch::~stoch() {
 	// TODO Auto-generated destructor stub
 }
+
 
 } /* namespace vSpace */
 

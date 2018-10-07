@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <armadillo>
+#include <vector>
 
 #include <math.h>
 
@@ -23,7 +24,7 @@
 #include "euCall.h"
 #include "Ndist.h"
 #include "outputC.h"
-
+#include "input.h"
 
 using namespace arma;
 using namespace std;
@@ -52,6 +53,24 @@ double f (double x){
 }
 
 
+void split(const string &chaine, char delimiteur, vector<string> &elements)
+{
+ stringstream ss(chaine);
+ string sousChaine;
+ while (getline(ss, sousChaine, delimiteur))
+ {
+ elements.push_back(sousChaine);
+ }
+}
+
+vector<string> split(const string &chaine, char delimiteur)
+{
+ vector<string> elements;
+ split(chaine, delimiteur, elements);
+ return elements;
+// credit https://www.journaldunet.fr/web-tech/developpement/1202959-comment-decouper-une-chaine-string-en-c/
+}
+
 int main() {
 
 //	fun A0 = fun(X,a0);
@@ -62,31 +81,42 @@ int main() {
 //	fun Umax = fun(T,umax);
 
 
-	realSpace T = realSpace(0,1,100); /* time */
-//	Parameters to model euCall
-	double sigma = 0.1;
-	double r = 0.05;
-	double K = 5;
-//	Parameters to simulate the underlying price
-	double mu = 0;
-	double trueSigma = sigma;
-	double S0 = 5;
+//	realSpace T = realSpace(0,1,100); /* time */
+////	Parameters to model euCall
+//	double sigma = 0.1;
+//	double r = 0.05;
+//	double K = 5;
+////	Parameters to simulate the underlying price
+//	double mu = 0;
+//	double trueSigma = sigma;
+//	double S0 = 5;
+//
+//	bs BS  = bs(T,mu,sigma,S0,2);
+////	cout << BS << endl;
+//	realSpace X = func::OutputSpace(BS);
+////	cout << X <<endl;
+//	euCall C = euCall(T,X,sigma,r,K);
+//
+//	vec B = C.HedgingPortfolio(BS,T, mu,  trueSigma,  S0);
+//
+//	vfun S = vfun(vecSpace(T,X),C.surface() );
+//
+//	vfun Vf = vfun(T,func::arc(S,BS));
+//
+//	outputC::write(T,Vf);
+//// yolo
+//	vfun bank = vfun(T,B);
+//	cout << bank;
 
-	bs BS = bs(T,mu,sigma,S0);
-//	cout << BS << endl;
-	realSpace X = func::OutputSpace(BS);
-//	cout << X <<endl;
-	euCall C = euCall(T,X,sigma,r,K);
+	realSpace T = realSpace(0,0.144,100);
+	realSpace X = realSpace(0,600,100);
+	euCall C = euCall(T,X,0.6657,0.03,280);
+//	cout << C(0,281.83);
 
-	vec B = C.HedgingPortfolio(BS,T, mu,  trueSigma,  S0);
+	vec v = input::inputStock("/Users/oliv/Documents/ColumbiaMSOR/Programming/snp500.csv");
+	vfun snp = vfun(realSpace(0,1,v.n_rows - 1),v);
+	cout << snp;
 
-	vfun S = vfun(vecSpace(T,X),C.surface() );
 
-	vfun Vf = vfun(T,func::arc(S,BS));
-
-	outputC::write(T,Vf);
-// yolo
-	vfun bank = vfun(T,B);
-	cout << bank;
 return 0;
 }

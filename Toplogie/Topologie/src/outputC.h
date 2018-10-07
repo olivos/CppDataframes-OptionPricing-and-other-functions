@@ -10,6 +10,9 @@
 
 #include <iostream>
 #include <fstream>
+#include <armadillo>
+
+
 
 namespace vSpace {
 class outputC {
@@ -102,6 +105,12 @@ public:
 
 		myfile.close();
 	}
+
+
+
+
+
+
 private:
 	outputC();
 	virtual ~outputC();
