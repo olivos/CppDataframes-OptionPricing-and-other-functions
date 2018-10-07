@@ -30,9 +30,18 @@ vec stoch::E(stochastic& Xt) {
 	return res;
 }
 
-//double stoch::V(vfun& Xt) {
-//	double m = dMean(f)
-//}
+double stoch::V(function & Xt, double(&g)(double)) {
+	double m = func::dMean(Xt,g);
+	realSpace K = Xt.getX();
+	int n = K.getNx();
+	double v = 0;
+
+	for(int i = 0 ; i < n+1 ; i++){
+		v += (g(Xt( K(i))) - m)*(g(Xt( K(i))) - m);
+//		cout << v << " ";
+	}
+	return v/n;
+}
 
 stoch::~stoch() {
 	// TODO Auto-generated destructor stub

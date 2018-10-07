@@ -13,6 +13,7 @@
 #include <string>
 #include "input.h"
 #include "function.h"
+#include "func.h"
 
 namespace vSpace {
 
@@ -21,9 +22,12 @@ public:
 //	For a stochastic process with several paths, compute the expected value at time t
 	static arma::vec E( stochastic & Xt);
 
+	static double Ide (double x){
+		return x;
+	}
 //  Variance of a function (signle path)
-//	static double V( vfun& Xt);
-//
+	static double V( function& Xt , double(&g)(double) = Ide);
+
 
 
 private :

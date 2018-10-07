@@ -31,31 +31,16 @@ using namespace std;
 using namespace vSpace;
 
 double f (double x){
-	return pow(exp(x),2);
-}
-
-void split(const string &chaine, char delimiteur, vector<string> &elements)
-{
- stringstream ss(chaine);
- string sousChaine;
- while (getline(ss, sousChaine, delimiteur))
- {
- elements.push_back(sousChaine);
- }
-}
-
-vector<string> split(const string &chaine, char delimiteur)
-{
- vector<string> elements;
- split(chaine, delimiteur, elements);
- return elements;
-// credit https://www.journaldunet.fr/web-tech/developpement/1202959-comment-decouper-une-chaine-string-en-c/
+	return log(x/2902.54);
 }
 
 int main() {
-	realSpace K =  realSpace(0,1,100);
-	fun F = fun(K,f);
-	cout << func::dMean(F,log);
+	vec SNP = input::inputStock("/Users/oliv/Documents/ColumbiaMSOR/Programming/snp500.csv");
+	realSpace X  = realSpace(0,1,SNP.n_rows-1);
+	vfun F = vfun(X,SNP);
+	cout << stoch::V(F,f)<<endl;
+	cout << stoch::V(F,log)<<endl;
+
 
 
 
