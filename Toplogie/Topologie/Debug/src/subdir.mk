@@ -14,6 +14,7 @@ CPP_SRCS += \
 ../src/funDD.cpp \
 ../src/func.cpp \
 ../src/function.cpp \
+../src/input.cpp \
 ../src/outputC.cpp \
 ../src/realSpace.cpp \
 ../src/stoch.cpp \
@@ -32,6 +33,7 @@ OBJS += \
 ./src/funDD.o \
 ./src/func.o \
 ./src/function.o \
+./src/input.o \
 ./src/outputC.o \
 ./src/realSpace.o \
 ./src/stoch.o \
@@ -50,6 +52,7 @@ CPP_DEPS += \
 ./src/funDD.d \
 ./src/func.d \
 ./src/function.d \
+./src/input.d \
 ./src/outputC.d \
 ./src/realSpace.d \
 ./src/stoch.d \

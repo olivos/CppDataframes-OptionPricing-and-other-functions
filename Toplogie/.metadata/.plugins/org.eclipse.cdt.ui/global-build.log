@@ -15656,3 +15656,297 @@ make: Nothing to be done for `all'.
 00:46:17 **** Incremental Build of configuration Debug for project Topologie ****
 make all 
 make: Nothing to be done for `all'.
+18:32:39 **** Incremental Build of configuration Debug for project Topologie ****
+make all 
+Building file: ../src/Ndist.cpp
+Invoking: GCC C++ Compiler
+g++ -I/usr/local/include -O0 -g3 -Wall -c -fmessage-length=0 -std=c++0x -MMD -MP -MF"src/Ndist.d" -MT"src/Ndist.o" -o "src/Ndist.o" "../src/Ndist.cpp"
+../src/Ndist.cpp:12:23: warning: field 'n' will be initialized after base 'vSpace::function' [-Wreorder]
+Ndist::Ndist(int n ): n(n), function(realSpace(-10,10,n)) {
+                      ^
+In file included from ../src/Ndist.cpp:8:
+../src/Ndist.h:22:6: warning: private field 'n' is not used [-Wunused-private-field]
+        int n;
+            ^
+2 warnings generated.
+Finished building: ../src/Ndist.cpp
+ 
+Building file: ../src/Topologie.cpp
+Invoking: GCC C++ Compiler
+g++ -I/usr/local/include -O0 -g3 -Wall -c -fmessage-length=0 -std=c++0x -MMD -MP -MF"src/Topologie.d" -MT"src/Topologie.o" -o "src/Topologie.o" "../src/Topologie.cpp"
+../src/Topologie.cpp:92:12: error: redefinition of 'T'
+        realSpace T = realSpace(0,1,100); /* time */
+                  ^
+../src/Topologie.cpp:65:12: note: previous definition is here
+        realSpace T = realSpace(0,1,100); /* time */
+                  ^
+1 error generated.
+make: *** [src/Topologie.o] Error 1
+18:33:16 **** Incremental Build of configuration Debug for project Topologie ****
+make all 
+Building file: ../src/Topologie.cpp
+Invoking: GCC C++ Compiler
+g++ -I/usr/local/include -O0 -g3 -Wall -c -fmessage-length=0 -std=c++0x -MMD -MP -MF"src/Topologie.d" -MT"src/Topologie.o" -o "src/Topologie.o" "../src/Topologie.cpp"
+../src/Topologie.cpp:68:9: warning: unused variable 'r' [-Wunused-variable]
+        double r = 0.05;
+               ^
+../src/Topologie.cpp:69:9: warning: unused variable 'K' [-Wunused-variable]
+        double K = 5;
+               ^
+../src/Topologie.cpp:71:9: warning: unused variable 'mu' [-Wunused-variable]
+        double mu = 0;
+               ^
+../src/Topologie.cpp:72:9: warning: unused variable 'trueSigma' [-Wunused-variable]
+        double trueSigma = sigma;
+               ^
+../src/Topologie.cpp:73:9: warning: unused variable 'S0' [-Wunused-variable]
+        double S0 = 5;
+               ^
+5 warnings generated.
+Finished building: ../src/Topologie.cpp
+ 
+Building file: ../src/brw.cpp
+Invoking: GCC C++ Compiler
+g++ -I/usr/local/include -O0 -g3 -Wall -c -fmessage-length=0 -std=c++0x -MMD -MP -MF"src/brw.d" -MT"src/brw.o" -o "src/brw.o" "../src/brw.cpp"
+Finished building: ../src/brw.cpp
+ 
+Building file: ../src/bs.cpp
+Invoking: GCC C++ Compiler
+g++ -I/usr/local/include -O0 -g3 -Wall -c -fmessage-length=0 -std=c++0x -MMD -MP -MF"src/bs.d" -MT"src/bs.o" -o "src/bs.o" "../src/bs.cpp"
+Finished building: ../src/bs.cpp
+ 
+Building file: ../src/ed.cpp
+Invoking: GCC C++ Compiler
+g++ -I/usr/local/include -O0 -g3 -Wall -c -fmessage-length=0 -std=c++0x -MMD -MP -MF"src/ed.d" -MT"src/ed.o" -o "src/ed.o" "../src/ed.cpp"
+Finished building: ../src/ed.cpp
+ 
+Building file: ../src/euCall.cpp
+Invoking: GCC C++ Compiler
+g++ -I/usr/local/include -O0 -g3 -Wall -c -fmessage-length=0 -std=c++0x -MMD -MP -MF"src/euCall.d" -MT"src/euCall.o" -o "src/euCall.o" "../src/euCall.cpp"
+Finished building: ../src/euCall.cpp
+ 
+Building file: ../src/fun.cpp
+Invoking: GCC C++ Compiler
+g++ -I/usr/local/include -O0 -g3 -Wall -c -fmessage-length=0 -std=c++0x -MMD -MP -MF"src/fun.d" -MT"src/fun.o" -o "src/fun.o" "../src/fun.cpp"
+Finished building: ../src/fun.cpp
+ 
+Building file: ../src/funDD.cpp
+Invoking: GCC C++ Compiler
+g++ -I/usr/local/include -O0 -g3 -Wall -c -fmessage-length=0 -std=c++0x -MMD -MP -MF"src/funDD.d" -MT"src/funDD.o" -o "src/funDD.o" "../src/funDD.cpp"
+Finished building: ../src/funDD.cpp
+ 
+Building file: ../src/func.cpp
+Invoking: GCC C++ Compiler
+g++ -I/usr/local/include -O0 -g3 -Wall -c -fmessage-length=0 -std=c++0x -MMD -MP -MF"src/func.d" -MT"src/func.o" -o "src/func.o" "../src/func.cpp"
+Finished building: ../src/func.cpp
+ 
+Building file: ../src/function.cpp
+Invoking: GCC C++ Compiler
+g++ -I/usr/local/include -O0 -g3 -Wall -c -fmessage-length=0 -std=c++0x -MMD -MP -MF"src/function.d" -MT"src/function.o" -o "src/function.o" "../src/function.cpp"
+Finished building: ../src/function.cpp
+ 
+Building file: ../src/outputC.cpp
+Invoking: GCC C++ Compiler
+g++ -I/usr/local/include -O0 -g3 -Wall -c -fmessage-length=0 -std=c++0x -MMD -MP -MF"src/outputC.d" -MT"src/outputC.o" -o "src/outputC.o" "../src/outputC.cpp"
+Finished building: ../src/outputC.cpp
+ 
+Building file: ../src/realSpace.cpp
+Invoking: GCC C++ Compiler
+g++ -I/usr/local/include -O0 -g3 -Wall -c -fmessage-length=0 -std=c++0x -MMD -MP -MF"src/realSpace.d" -MT"src/realSpace.o" -o "src/realSpace.o" "../src/realSpace.cpp"
+Finished building: ../src/realSpace.cpp
+ 
+Building file: ../src/stoch.cpp
+Invoking: GCC C++ Compiler
+g++ -I/usr/local/include -O0 -g3 -Wall -c -fmessage-length=0 -std=c++0x -MMD -MP -MF"src/stoch.d" -MT"src/stoch.o" -o "src/stoch.o" "../src/stoch.cpp"
+Finished building: ../src/stoch.cpp
+ 
+Building file: ../src/stochastic.cpp
+Invoking: GCC C++ Compiler
+g++ -I/usr/local/include -O0 -g3 -Wall -c -fmessage-length=0 -std=c++0x -MMD -MP -MF"src/stochastic.d" -MT"src/stochastic.o" -o "src/stochastic.o" "../src/stochastic.cpp"
+Finished building: ../src/stochastic.cpp
+ 
+Building file: ../src/vecSpace.cpp
+Invoking: GCC C++ Compiler
+g++ -I/usr/local/include -O0 -g3 -Wall -c -fmessage-length=0 -std=c++0x -MMD -MP -MF"src/vecSpace.d" -MT"src/vecSpace.o" -o "src/vecSpace.o" "../src/vecSpace.cpp"
+Finished building: ../src/vecSpace.cpp
+ 
+Building file: ../src/vfun.cpp
+Invoking: GCC C++ Compiler
+g++ -I/usr/local/include -O0 -g3 -Wall -c -fmessage-length=0 -std=c++0x -MMD -MP -MF"src/vfun.d" -MT"src/vfun.o" -o "src/vfun.o" "../src/vfun.cpp"
+Finished building: ../src/vfun.cpp
+ 
+Building target: Topologie
+Invoking: MacOS X C++ Linker
+g++ -L/usr/local/lib/ -o "Topologie"  ./src/Ndist.o ./src/Topologie.o ./src/brw.o ./src/bs.o ./src/ed.o ./src/euCall.o ./src/fun.o ./src/funDD.o ./src/func.o ./src/function.o ./src/outputC.o ./src/realSpace.o ./src/stoch.o ./src/stochastic.o ./src/vecSpace.o ./src/vfun.o   -larmadillo.8.60.0
+Finished building target: Topologie
+ 
+18:35:01 **** Incremental Build of configuration Debug for project Topologie ****
+make all 
+Building file: ../src/Topologie.cpp
+Invoking: GCC C++ Compiler
+g++ -I/usr/local/include -O0 -g3 -Wall -c -fmessage-length=0 -std=c++0x -MMD -MP -MF"src/Topologie.d" -MT"src/Topologie.o" -o "src/Topologie.o" "../src/Topologie.cpp"
+../src/Topologie.cpp:68:9: warning: unused variable 'r' [-Wunused-variable]
+        double r = 0.05;
+               ^
+../src/Topologie.cpp:69:9: warning: unused variable 'K' [-Wunused-variable]
+        double K = 5;
+               ^
+../src/Topologie.cpp:71:9: warning: unused variable 'mu' [-Wunused-variable]
+        double mu = 0;
+               ^
+../src/Topologie.cpp:72:9: warning: unused variable 'trueSigma' [-Wunused-variable]
+        double trueSigma = sigma;
+               ^
+../src/Topologie.cpp:73:9: warning: unused variable 'S0' [-Wunused-variable]
+        double S0 = 5;
+               ^
+5 warnings generated.
+Finished building: ../src/Topologie.cpp
+ 
+Building target: Topologie
+Invoking: MacOS X C++ Linker
+g++ -L/usr/local/lib/ -o "Topologie"  ./src/Ndist.o ./src/Topologie.o ./src/brw.o ./src/bs.o ./src/ed.o ./src/euCall.o ./src/fun.o ./src/funDD.o ./src/func.o ./src/function.o ./src/outputC.o ./src/realSpace.o ./src/stoch.o ./src/stochastic.o ./src/vecSpace.o ./src/vfun.o   -larmadillo.8.60.0
+Finished building target: Topologie
+ 
+18:43:04 **** Incremental Build of configuration Debug for project Topologie ****
+make all 
+make: Nothing to be done for `all'.
+19:35:30 **** Incremental Build of configuration Debug for project Topologie ****
+make all 
+Building file: ../src/Topologie.cpp
+Invoking: GCC C++ Compiler
+g++ -I/usr/local/include -O0 -g3 -Wall -c -fmessage-length=0 -std=c++0x -MMD -MP -MF"src/Topologie.d" -MT"src/Topologie.o" -o "src/Topologie.o" "../src/Topologie.cpp"
+../src/Topologie.cpp:68:9: warning: unused variable 'r' [-Wunused-variable]
+        double r = 0.05;
+               ^
+../src/Topologie.cpp:69:9: warning: unused variable 'K' [-Wunused-variable]
+        double K = 5;
+               ^
+../src/Topologie.cpp:71:9: warning: unused variable 'mu' [-Wunused-variable]
+        double mu = 0;
+               ^
+../src/Topologie.cpp:72:9: warning: unused variable 'trueSigma' [-Wunused-variable]
+        double trueSigma = sigma;
+               ^
+../src/Topologie.cpp:73:9: warning: unused variable 'S0' [-Wunused-variable]
+        double S0 = 5;
+               ^
+5 warnings generated.
+Finished building: ../src/Topologie.cpp
+ 
+Building file: ../src/euCall.cpp
+Invoking: GCC C++ Compiler
+g++ -I/usr/local/include -O0 -g3 -Wall -c -fmessage-length=0 -std=c++0x -MMD -MP -MF"src/euCall.d" -MT"src/euCall.o" -o "src/euCall.o" "../src/euCall.cpp"
+Finished building: ../src/euCall.cpp
+ 
+Building target: Topologie
+Invoking: MacOS X C++ Linker
+g++ -L/usr/local/lib/ -o "Topologie"  ./src/Ndist.o ./src/Topologie.o ./src/brw.o ./src/bs.o ./src/ed.o ./src/euCall.o ./src/fun.o ./src/funDD.o ./src/func.o ./src/function.o ./src/outputC.o ./src/realSpace.o ./src/stoch.o ./src/stochastic.o ./src/vecSpace.o ./src/vfun.o   -larmadillo.8.60.0
+Finished building target: Topologie
+ 
+19:36:07 **** Incremental Build of configuration Debug for project Topologie ****
+make all 
+Building file: ../src/Topologie.cpp
+Invoking: GCC C++ Compiler
+g++ -I/usr/local/include -O0 -g3 -Wall -c -fmessage-length=0 -std=c++0x -MMD -MP -MF"src/Topologie.d" -MT"src/Topologie.o" -o "src/Topologie.o" "../src/Topologie.cpp"
+../src/Topologie.cpp:68:9: warning: unused variable 'r' [-Wunused-variable]
+        double r = 0.05;
+               ^
+../src/Topologie.cpp:69:9: warning: unused variable 'K' [-Wunused-variable]
+        double K = 5;
+               ^
+../src/Topologie.cpp:71:9: warning: unused variable 'mu' [-Wunused-variable]
+        double mu = 0;
+               ^
+../src/Topologie.cpp:72:9: warning: unused variable 'trueSigma' [-Wunused-variable]
+        double trueSigma = sigma;
+               ^
+../src/Topologie.cpp:73:9: warning: unused variable 'S0' [-Wunused-variable]
+        double S0 = 5;
+               ^
+5 warnings generated.
+Finished building: ../src/Topologie.cpp
+ 
+Building target: Topologie
+Invoking: MacOS X C++ Linker
+g++ -L/usr/local/lib/ -o "Topologie"  ./src/Ndist.o ./src/Topologie.o ./src/brw.o ./src/bs.o ./src/ed.o ./src/euCall.o ./src/fun.o ./src/funDD.o ./src/func.o ./src/function.o ./src/outputC.o ./src/realSpace.o ./src/stoch.o ./src/stochastic.o ./src/vecSpace.o ./src/vfun.o   -larmadillo.8.60.0
+Finished building target: Topologie
+ 
+13:06:28 **** Incremental Build of configuration Debug for project Topologie ****
+make all 
+Building file: ../src/Topologie.cpp
+Invoking: GCC C++ Compiler
+g++ -I/usr/local/include -O0 -g3 -Wall -c -fmessage-length=0 -std=c++0x -MMD -MP -MF"src/Topologie.d" -MT"src/Topologie.o" -o "src/Topologie.o" "../src/Topologie.cpp"
+../src/Topologie.cpp:95:10: error: no matching function for call to object of type 'vSpace::euCall'
+        cout << C(310);
+                ^
+../src/euCall.h:24:17: note: candidate function not viable: requires 2 arguments, but 1 was provided
+        virtual double operator() (double t, double x);
+                       ^
+1 error generated.
+make: *** [src/Topologie.o] Error 1
+13:07:00 **** Incremental Build of configuration Debug for project Topologie ****
+make all 
+Building file: ../src/Topologie.cpp
+Invoking: GCC C++ Compiler
+g++ -I/usr/local/include -O0 -g3 -Wall -c -fmessage-length=0 -std=c++0x -MMD -MP -MF"src/Topologie.d" -MT"src/Topologie.o" -o "src/Topologie.o" "../src/Topologie.cpp"
+Finished building: ../src/Topologie.cpp
+ 
+Building target: Topologie
+Invoking: MacOS X C++ Linker
+g++ -L/usr/local/lib/ -o "Topologie"  ./src/Ndist.o ./src/Topologie.o ./src/brw.o ./src/bs.o ./src/ed.o ./src/euCall.o ./src/fun.o ./src/funDD.o ./src/func.o ./src/function.o ./src/outputC.o ./src/realSpace.o ./src/stoch.o ./src/stochastic.o ./src/vecSpace.o ./src/vfun.o   -larmadillo.8.60.0
+Finished building target: Topologie
+ 
+13:07:26 **** Incremental Build of configuration Debug for project Topologie ****
+make all 
+Building file: ../src/Topologie.cpp
+Invoking: GCC C++ Compiler
+g++ -I/usr/local/include -O0 -g3 -Wall -c -fmessage-length=0 -std=c++0x -MMD -MP -MF"src/Topologie.d" -MT"src/Topologie.o" -o "src/Topologie.o" "../src/Topologie.cpp"
+Finished building: ../src/Topologie.cpp
+ 
+Building target: Topologie
+Invoking: MacOS X C++ Linker
+g++ -L/usr/local/lib/ -o "Topologie"  ./src/Ndist.o ./src/Topologie.o ./src/brw.o ./src/bs.o ./src/ed.o ./src/euCall.o ./src/fun.o ./src/funDD.o ./src/func.o ./src/function.o ./src/outputC.o ./src/realSpace.o ./src/stoch.o ./src/stochastic.o ./src/vecSpace.o ./src/vfun.o   -larmadillo.8.60.0
+Finished building target: Topologie
+ 
+13:08:13 **** Incremental Build of configuration Debug for project Topologie ****
+make all 
+Building file: ../src/Topologie.cpp
+Invoking: GCC C++ Compiler
+g++ -I/usr/local/include -O0 -g3 -Wall -c -fmessage-length=0 -std=c++0x -MMD -MP -MF"src/Topologie.d" -MT"src/Topologie.o" -o "src/Topologie.o" "../src/Topologie.cpp"
+Finished building: ../src/Topologie.cpp
+ 
+Building target: Topologie
+Invoking: MacOS X C++ Linker
+g++ -L/usr/local/lib/ -o "Topologie"  ./src/Ndist.o ./src/Topologie.o ./src/brw.o ./src/bs.o ./src/ed.o ./src/euCall.o ./src/fun.o ./src/funDD.o ./src/func.o ./src/function.o ./src/outputC.o ./src/realSpace.o ./src/stoch.o ./src/stochastic.o ./src/vecSpace.o ./src/vfun.o   -larmadillo.8.60.0
+Finished building target: Topologie
+ 
+13:09:07 **** Incremental Build of configuration Debug for project Topologie ****
+make all 
+Building file: ../src/Topologie.cpp
+Invoking: GCC C++ Compiler
+g++ -I/usr/local/include -O0 -g3 -Wall -c -fmessage-length=0 -std=c++0x -MMD -MP -MF"src/Topologie.d" -MT"src/Topologie.o" -o "src/Topologie.o" "../src/Topologie.cpp"
+Finished building: ../src/Topologie.cpp
+ 
+Building target: Topologie
+Invoking: MacOS X C++ Linker
+g++ -L/usr/local/lib/ -o "Topologie"  ./src/Ndist.o ./src/Topologie.o ./src/brw.o ./src/bs.o ./src/ed.o ./src/euCall.o ./src/fun.o ./src/funDD.o ./src/func.o ./src/function.o ./src/outputC.o ./src/realSpace.o ./src/stoch.o ./src/stochastic.o ./src/vecSpace.o ./src/vfun.o   -larmadillo.8.60.0
+Finished building target: Topologie
+ 
+13:11:46 **** Incremental Build of configuration Debug for project Topologie ****
+make all 
+Building file: ../src/Topologie.cpp
+Invoking: GCC C++ Compiler
+g++ -I/usr/local/include -O0 -g3 -Wall -c -fmessage-length=0 -std=c++0x -MMD -MP -MF"src/Topologie.d" -MT"src/Topologie.o" -o "src/Topologie.o" "../src/Topologie.cpp"
+Finished building: ../src/Topologie.cpp
+ 
+Building file: ../src/euCall.cpp
+Invoking: GCC C++ Compiler
+g++ -I/usr/local/include -O0 -g3 -Wall -c -fmessage-length=0 -std=c++0x -MMD -MP -MF"src/euCall.d" -MT"src/euCall.o" -o "src/euCall.o" "../src/euCall.cpp"
+Finished building: ../src/euCall.cpp
+ 
+Building target: Topologie
+Invoking: MacOS X C++ Linker
+g++ -L/usr/local/lib/ -o "Topologie"  ./src/Ndist.o ./src/Topologie.o ./src/brw.o ./src/bs.o ./src/ed.o ./src/euCall.o ./src/fun.o ./src/funDD.o ./src/func.o ./src/function.o ./src/outputC.o ./src/realSpace.o ./src/stoch.o ./src/stochastic.o ./src/vecSpace.o ./src/vfun.o   -larmadillo.8.60.0
+Finished building target: Topologie
+ 

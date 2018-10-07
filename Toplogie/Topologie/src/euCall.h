@@ -1,3 +1,4 @@
+
 /*
  * euCall.h
  *
@@ -22,7 +23,7 @@ public:
 
 	virtual double operator() (double t, double x);
 
-	Ndist phi = Ndist();
+	Ndist phi = Ndist(100000);
 
 
 	double alpha1 (double t , double x){
@@ -53,6 +54,7 @@ public:
 	 	 More precisions : uses the space X,T for computing both the price of underlying
 	 	 and the option value surface.*/
 
+	arma::vec HedgingPortfolio(vfun & BS,realSpace HedgingTimes,double mu, double trueSigma, double S0); /*Same for a vfun */
 
 
 
