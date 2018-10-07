@@ -38,7 +38,7 @@ public:
 
 //	computes discrete mean of a function of a realSpace
 	static double dMean(function& f);
-
+yooo
 private:
 	func();
 	virtual ~func();
