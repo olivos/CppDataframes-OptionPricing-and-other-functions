@@ -13,6 +13,7 @@
 #include "Ndist.h"
 #include "bs.h"
 #include "math.h"
+#include "vfun.h"
 
 namespace vSpace {
 
@@ -48,13 +49,13 @@ public:
 	see Leonard Gallardo "Mouvement Brownien et Calcul d'Itô" */
 	double Delta(double t, double y); /* Finds the delta of a European call using the analytical solution*/
 
-	arma::vec HedgingPortfolio(bs & BS,realSpace HedgingTimes,double mu, double trueSigma, double S0); /* Simulates a portfolio
+	arma::vec HedgingPortfolio(bs & BS,realSpace HedgingTimes, bool display = true); /* Simulates a portfolio
 	to hedge an option which underlying follows Black Scholes model (mu,trueSigma,S0), HedgingTimes is the
 	time vector containing the points were the adjustments will be done
 	 	 More precisions : uses the space X,T for computing both the price of underlying
 	 	 and the option value surface.*/
 
-//	arma::vec HedgingPortfolio(vfun & BS,realSpace HedgingTimes,double mu, double trueSigma, double S0); /*Same for a vfun */
+	arma::vec HedgingPortfolio(vfun & BS,realSpace HedgingTimes, bool display = true); /*Same for a vfun */
 
 
 

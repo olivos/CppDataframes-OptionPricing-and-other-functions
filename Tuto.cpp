@@ -1,38 +1,4 @@
-//============================================================================
-// Name        : Topologie.cpp
-// Author      : 
-// Version     :
-// Copyright   : Your copyright notice
-// Description : Hello World in C++, Ansi-style
-//============================================================================
-
-#include <iostream>
-#include <armadillo>
-#include <vector>
-
-#include <math.h>
-
-#include "vecSpace.h"
-#include "realSpace.h"
-#include "fun.h"
-#include "vfun.h"
-#include "ed.h"
-#include "brw.h"
-#include "stoch.h"
-#include "func.h"
-#include "bs.h"
-#include "euCall.h"
-#include "Ndist.h"
-#include "outputC.h"
-#include "input.h"
-
-using namespace arma;
-using namespace std;
-using namespace vSpace;
-
-double f (double x){
-	return log(x/2902.54);
-}
+SIMULATING DELTA HEDGING WITH MARKET DATA FROM A CSV FILE
 
 int main() {
 //	Importing the data ( CSV file with one column

@@ -137,10 +137,10 @@ double euCall::Delta(double t,double x) {
 
 //	using numeric evaluation of the analytic formula of delta
 
-vec euCall::HedgingPortfolio(bs & BS, realSpace HedgingTimes, double mu, double trueSigma,double S0) {
+vec euCall::HedgingPortfolio(bs & BS, realSpace HedgingTimes, bool display) {
 	int nH = HedgingTimes.getNx();
 	vec B = vec(nH+1); /* vector representing evolution of the value of the portfolio*/
-
+	double S0 = BS(HedgingTimes(0));
 
 
 //	Initialization
@@ -148,32 +148,40 @@ vec euCall::HedgingPortfolio(bs & BS, realSpace HedgingTimes, double mu, double 
 	double theta = Delta(0,S0);
 //	cout << "["<< theta <<",";
 	B(0) = this->operator ()(0,S0) - theta*S0;
+	if(display){
 	cout << "Initialization Option price is " << this->operator ()(0,S0) << "theta is" << theta << "bank account" << B(0)<< "\n";
-
+	}
 
 //	Heredity
 
 	for (int i = 1 ; i<nH ; i++){
 		B(i) = B(i-1)*exp(r*deltas(0)); /* Interest return */
 
+		if(display){
 		cout << "Step"<<i << "St " << BS(HedgingTimes(i)) << "after interests" << B(i);
+		}
 
 		B(i) = B(i) + theta*BS(HedgingTimes(i)); /* Selling theta underlying */
 
+		if(display){
 		cout << "after sale" << B(i);
+		}
 
 		theta = Delta( HedgingTimes(i) ,BS(HedgingTimes(i))  );
 		cout << theta <<",";
 		B(i) = B(i) - theta*BS(HedgingTimes(i)); /* Buying newTheta underlying */
 
+		if(display){
 		cout << "newtheta" << theta << "after buying" << B(i)<<endl;
-
+		}
 	}
 //	Final stage
 
 	B(nH) = B(nH-1)*exp(r*deltas(0)); /* Interest return */
 
+	if(display){
 	cout << "Last Step St " << BS(HedgingTimes(nH)) << "after interests" << B(nH);
+	}
 
 	B(nH) = B(nH) + theta*BS(X(nH)); /* Selling theta underlying */
 
@@ -186,56 +194,67 @@ vec euCall::HedgingPortfolio(bs & BS, realSpace HedgingTimes, double mu, double 
 	return B;
 }
 
-//arma::vec euCall::HedgingPortfolio(vfun& BS, realSpace HedgingTimes,
-//		double mu, double trueSigma, double S0) {
-//	int nH = HedgingTimes.getNx();
-//	vec B = vec(nH+1); /* vector representing evolution of the value of the portfolio*/
-//
-//
-//
-////	Initialization
-//
-//	double theta = Delta(0,S0);
-////	cout << "["<< theta <<",";
-//	B(0) = this->operator ()(0,S0) - theta*S0;
-//	cout << "Initialization Option price is " << this->operator ()(0,S0) << "theta is" << theta << "bank account" << B(0)<< "\n";
-//
-//
-////	Heredity
-//
-//	for (int i = 1 ; i<nH ; i++){
-//		B(i) = B(i-1)*exp(r*deltas(0)); /* Interest return */
-//
-//		cout << "Step"<<i << "St " << BS(HedgingTimes(i)) << "after interests" << B(i);
-//
-//		B(i) = B(i) + theta*BS(HedgingTimes(i)); /* Selling theta underlying */
-//
-//		cout << "after sale" << B(i);
-//
-//		theta = Delta( HedgingTimes(i) ,BS(HedgingTimes(i))  );
-//		cout << theta <<",";
-//		B(i) = B(i) - theta*BS(HedgingTimes(i)); /* Buying newTheta underlying */
-//
-//		cout << "newtheta" << theta << "after buying" << B(i)<<endl;
-//
-//	}
-////	Final stage
-//
-//	B(nH) = B(nH-1)*exp(r*deltas(0)); /* Interest return */
-//
-//	cout << "Last Step St " << BS(HedgingTimes(nH)) << "after interests" << B(nH);
-//
-//	B(nH) = B(nH) + theta*BS(X(nH)); /* Selling theta underlying */
-//
-//	cout << "after sale" << B(nH)<< "\n";
-//
-//	if ( BS(X(nH)) > K ){
-//		B(nH) = B(nH) - BS(X(nH)) - K;
-//	}
-////	cout << theta <<"]"<<"\n";
-//	return B;
-//
-//}
+arma::vec euCall::HedgingPortfolio(vfun& BS, realSpace HedgingTimes, bool display) {
+	int nH = HedgingTimes.getNx();
+	vec B = vec(nH+1); /* vector representing evolution of the value of the portfolio*/
+	double S0 = BS(HedgingTimes(0));
+
+
+//	Initialization
+
+	double theta = Delta(0,S0);
+//	cout << "["<< theta <<",";
+	B(0) = this->operator ()(0,S0) - theta*S0;
+
+	if(display){
+	cout << "Initialization Option price is " << this->operator ()(0,S0) << "theta is" << theta << "bank account" << B(0)<< "\n";
+	}
+
+//	Heredity
+
+	for (int i = 1 ; i<nH ; i++){
+		B(i) = B(i-1)*exp(r*deltas(0)); /* Interest return */
+
+		if(display){
+		cout << "Step"<<i << "St " << BS(HedgingTimes(i)) << "after interests" << B(i);
+		}
+
+		B(i) = B(i) + theta*BS(HedgingTimes(i)); /* Selling theta underlying */
+
+		if(display){
+		cout << "after sale" << B(i);
+		}
+
+		theta = Delta( HedgingTimes(i) ,BS(HedgingTimes(i))  );
+		if(display){
+		cout << theta <<",";
+		}
+		B(i) = B(i) - theta*BS(HedgingTimes(i)); /* Buying newTheta underlying */
+
+		if(display){
+		cout << "newtheta" << theta << "after buying" << B(i)<<endl;
+		}
+
+	}
+//	Final stage
+
+	B(nH) = B(nH-1)*exp(r*deltas(0)); /* Interest return */
+
+	if(display){
+	cout << "Last Step St " << BS(HedgingTimes(nH)) << "after interests" << B(nH);
+	}
+
+	B(nH) = B(nH) + theta*BS(X(nH)); /* Selling theta underlying */
+
+	cout << "after sale" << B(nH)<< "\n";
+
+	if ( BS(X(nH)) > K ){
+		B(nH) = B(nH) - BS(X(nH)) - K;
+	}
+//	cout << theta <<"]"<<"\n";
+	return B;
+
+}
 
 } /* namespace vSpace */
 
