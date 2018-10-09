@@ -55,7 +55,7 @@ public:
 	 	 More precisions : uses the space X,T for computing both the price of underlying
 	 	 and the option value surface.*/
 
-	arma::vec HedgingPortfolio(vfun & BS,realSpace HedgingTimes, bool display = true); /*Same for a vfun */
+	arma::vec HedgingPortfolio(vfun & BS,realSpace HedgingTimes, bool display = true, bool the = false); /*Same for a vfun */
 
 
 

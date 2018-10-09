@@ -194,7 +194,7 @@ vec euCall::HedgingPortfolio(bs & BS, realSpace HedgingTimes, bool display) {
 	return B;
 }
 
-arma::vec euCall::HedgingPortfolio(vfun& BS, realSpace HedgingTimes, bool display) {
+arma::vec euCall::HedgingPortfolio(vfun& BS, realSpace HedgingTimes, bool display , bool the) {
 	int nH = HedgingTimes.getNx();
 	vec B = vec(nH+1); /* vector representing evolution of the value of the portfolio*/
 	double S0 = BS(HedgingTimes(0));
@@ -203,7 +203,11 @@ arma::vec euCall::HedgingPortfolio(vfun& BS, realSpace HedgingTimes, bool displa
 //	Initialization
 
 	double theta = Delta(0,S0);
-//	cout << "["<< theta <<",";
+
+	if(the){
+	cout << "["<< theta <<",";
+	}
+
 	B(0) = this->operator ()(0,S0) - theta*S0;
 
 	if(display){
@@ -226,7 +230,9 @@ arma::vec euCall::HedgingPortfolio(vfun& BS, realSpace HedgingTimes, bool displa
 		}
 
 		theta = Delta( HedgingTimes(i) ,BS(HedgingTimes(i))  );
-		if(display){
+
+
+		if(the){
 		cout << theta <<",";
 		}
 		B(i) = B(i) - theta*BS(HedgingTimes(i)); /* Buying newTheta underlying */
@@ -249,9 +255,12 @@ arma::vec euCall::HedgingPortfolio(vfun& BS, realSpace HedgingTimes, bool displa
 	cout << "after sale" << B(nH)<< "\n";
 
 	if ( BS(X(nH)) > K ){
-		B(nH) = B(nH) - BS(X(nH)) - K;
+		B(nH) = B(nH) - BS(X(nH)) + K;
+		cout << "after selling the stock to the customer:"<< B(nH)<< "\n";
 	}
-//	cout << theta <<"]"<<"\n";
+	if(the){
+	cout << theta <<"]"<<"\n";
+	}
 	return B;
 
 }

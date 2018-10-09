@@ -47,6 +47,7 @@ public:
 
 	template<class T1, class T2>
 	static void write3d(T1 x, T1 y,T2 z) {
+//		credit https://jakevdp.github.io/PythonDataScienceHandbook/04.12-three-dimensional-plotting.html
 		std::ofstream myfile;
 		myfile.open ("/Users/oliv/eclipse-workspace/plotS.py" , std::ios::trunc );
 
@@ -66,6 +67,8 @@ public:
 
 	template<class T1, class T2, class T3>
 	static void write3d(T1 x, T1 y,T2 z1,T3 z2) {
+
+//		Credit https://jakevdp.github.io/PythonDataScienceHandbook/04.12-three-dimensional-plotting.html
 		std::ofstream myfile;
 		myfile.open ("/Users/oliv/eclipse-workspace/plotS.py" , std::ios::trunc );
 
