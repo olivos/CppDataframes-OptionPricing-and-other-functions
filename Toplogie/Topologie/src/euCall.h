@@ -87,7 +87,11 @@ public:
 
 	const Ndist& getPhi() const;
 
-private:
+	virtual double getK() const {
+		return K;
+	}
+
+protected:
 	double sigma;
 	double r;
 	double K;

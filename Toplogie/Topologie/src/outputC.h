@@ -11,6 +11,7 @@
 #include <iostream>
 #include <fstream>
 #include <armadillo>
+#include "Hedging.h"
 
 
 
@@ -106,6 +107,30 @@ public:
 
 		myfile << "ax = plt.axes(projection='3d') \nax.plot_surface(x, y, z1, rstride=1, cstride=1, cmap='viridis', edgecolor='none') \nax.plot_surface(x, y, z2, rstride=1, cstride=1, cmap='viridis', edgecolor='none') \nax.set_title('surface') ; \nplt.show()";
 
+		myfile.close();
+	}
+
+	static void writeHedge( Hedging P, std::string fileName){
+
+		std::ofstream myfile;
+		myfile.open(fileName , std::ios::trunc );
+
+		myfile << "import matplotlib.pyplot as plt"<<"\n\n";
+		myfile << "x =";
+		realSpace T  = P.getHedgingTimes();
+		myfile << T;
+		myfile << "\n";
+		myfile << "y =";
+		vfun val = vfun(T,P.getValue());
+		myfile << val;
+		myfile << "\n";
+		vfun Stock = P.getStock();
+		myfile << "st = ";
+		myfile << Stock;
+		myfile << "\n";
+		myfile << "for i in range(len(st)):\n\tst[i] = max(st[i] - ";
+		myfile <<P.getK()<< " , 0)\n";
+		myfile << "fig, ax = plt.subplots()\nax.plot(x, y, '-b', label='Hedging profolio value')\nax.plot(x, st, '-r', label='(St - K)+')\nleg = ax.legend();\n#Credit https:jakevdp.github.io/PythonDataScienceHandbook/04.06-customizing-legends.html ";
 		myfile.close();
 	}
 

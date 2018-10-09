@@ -4,6 +4,7 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../src/Hedging.cpp \
 ../src/Ndist.cpp \
 ../src/Topologie.cpp \
 ../src/brw.cpp \
@@ -23,6 +24,7 @@ CPP_SRCS += \
 ../src/vfun.cpp 
 
 OBJS += \
+./src/Hedging.o \
 ./src/Ndist.o \
 ./src/Topologie.o \
 ./src/brw.o \
@@ -42,6 +44,7 @@ OBJS += \
 ./src/vfun.o 
 
 CPP_DEPS += \
+./src/Hedging.d \
 ./src/Ndist.d \
 ./src/Topologie.d \
 ./src/brw.d \
