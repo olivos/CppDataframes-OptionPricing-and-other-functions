@@ -25,7 +25,7 @@ public:
 		return B;
 	}
 
-	const arma::vec& getTheta() const {
+	const arma::vec& getDelta() const {
 		return thetaV;
 	}
 

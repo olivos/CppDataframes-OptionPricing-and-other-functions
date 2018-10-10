@@ -1,80 +1,70 @@
-SIMULATING DELTA HEDGING WITH MARKET DATA FROM A CSV FILE
+// SIMULATING DELTA HEDGING WITH MARKET DATA FROM A CSV FILE
+// ONE examlpe use file snp500.csv provided
+#include <iostream>
+#include <armadillo>
+#include <vector>
 
-int main() {
-//	Importing the data ( CSV file with one column
-	vec SNP = input::inputStock("/Users/oliv/Documents/ColumbiaMSOR/Programming/snp500.csv");
+#include <math.h>
 
-//	Time space corresponding to the data start, end, n ( start and end in years,
-//	n = (number of values) -1  .
-	realSpace T  = realSpace(0,1,SNP.n_rows-1);
+#include "vecSpace.h"
+#include "realSpace.h"
+#include "fun.h"
+#include "vfun.h"
+#include "ed.h"
+#include "brw.h"
+#include "stoch.h"
+#include "func.h"
+#include "bs.h"
+#include "euCall.h"
+#include "Ndist.h"
+#include "outputC.h"
+#include "input.h"
+#include "Hedging.h"
 
-//	creates functions linking the time space and the values
-	vfun snp = vfun(T,SNP);
+using namespace arma;
+using namespace std;
+using namespace vSpace;
 
-//	Space containing starting at the lowest stock price and going to the max
-	realSpace X = func::OutputSpace(snp);
-
-//	T : points where hedging is accomplished, 0.13 volatility, 0.03 risk free rate, 2920 : strike
-	euCall SP5 = euCall(T,X,0.13,0.03,2920);
-
-//	bank vector : represents the money in the hedgers' bank account at each time
-//	where hedging is performed
-
-	vec Bank = SP5.HedgingPortfolio(snp,T);
-
-	realSpace T2 = realSpace(0,1,(SNP.n_rows-1)/2);
-
-//	Step by step display can be unactivated by setting the last variable to false
-	vec Bank2 = SP5.HedgingPortfolio(snp,T2,false);
-
-//	We can see that on this case hedging every two days instead of daily you are $4 further
-//	from equilibrium ( +$4.63 instead of +$0.54 )
-	cout << Bank[SNP.n_rows-1] << " " << Bank2[(SNP.n_rows-1)/2];
-
-
-
-
-return 0;
+double f (double x){
+	return log(x/2902.54);
 }
 
-
-// Tuto 2
-
-//	Importing the data ( CSV file with one column
+int main() {
+//	Importing the data ( CSV file with one column )
 	vec SNP = input::inputStock("/Users/oliv/Documents/ColumbiaMSOR/Programming/snp500.csv");
 
-//	Time space corresponding to the data start, end, n ( start and end in years,
+//	Time segment corresponding to the data start, end, n ( start and end in years,
 //	n = (number of values) -1  .
 	realSpace T  = realSpace(0,1,SNP.n_rows-1);
 
 //	creates functions linking the time space and the values
 	vfun snp = vfun(T,SNP);
 
-//	Space containing starting at the lowest stock price and going to the max
+//	Price segment starting at the lowest stock price and going to the max
 	realSpace X = func::OutputSpace(snp);
 
-//	T : points where hedging is accomplished, 0.13 volatility, 0.03 risk free rate, 2920 : strike
+
+//	T : Times segment, 0.13 volatility, 0.03 risk free rate, 2920 : strike
 	euCall SP5 = euCall(T,X,0.137,0.03,2540);
 
-//	bank vector : represents the money in the hedgers' bank account (not including the value of the uunderlying he owns !) at each time
-//	where hedging is performed
-
-	vec Bank = SP5.HedgingPortfolio(snp,T,true);
+//	Time segment representing the moments when portfolio adjustments are performed
+	realSpace HedgingPoints = realSpace(0,1,250);
 
 
+//	Object representing the hedging portfolio
 
-	realSpace T2 = realSpace(0,1,(SNP.n_rows-1)/2);
+	Hedging portf = Hedging(SP5,snp,HedgingPoints);
 
-//	Step by step display can be unactivated by setting the last variable to false
-//	vec Bank2 = SP5.HedgingPortfolio(snp,T2,false);
+	//	value vector : represents the value of the hedging portfolio at time t
+	vec val = portf.getValue();
 
-//	We can see that on this case hedging every two days instead of daily you are $4 further
-//	from equilibrium ( +$4.63 instead of +$0.54 )
-//	cout << Bank[SNP.n_rows-1] << " " << Bank2[(SNP.n_rows-1)/2];
+//	function linking the time segment with the value vector
+	vfun vVal = vfun(T,val);
 
-//  converting the bank vector to a vfun
-	vfun vBank = vfun(T,Bank);
 
 //	output to a python file for graphical representation
-	outputC::write(T,vBank,"/Users/oliv/Documents/ColumbiaMSOR/Programming/snp500.py");
-	cout << snp;
+
+	outputC::writeHedge(portf,"snp500.csv");
+
+	return 0;
+}

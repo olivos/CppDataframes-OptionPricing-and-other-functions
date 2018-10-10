@@ -110,27 +110,47 @@ public:
 		myfile.close();
 	}
 
-	static void writeHedge( Hedging P, std::string fileName){
+	static void writeHedge( Hedging& P, std::string fileName, bool delta = false){
 
 		std::ofstream myfile;
 		myfile.open(fileName , std::ios::trunc );
 
 		myfile << "import matplotlib.pyplot as plt"<<"\n\n";
 		myfile << "x =";
-		realSpace T  = P.getHedgingTimes();
+		realSpace T  = P.getX();
 		myfile << T;
 		myfile << "\n";
+
+		realSpace HedgingTimes = P.getHedgingTimes();
+		myfile << "ht =";
+		myfile << HedgingTimes;
+		myfile << "\n";
+
 		myfile << "y =";
-		vfun val = vfun(T,P.getValue());
+		vfun val = vfun(HedgingTimes,P.getValue());
 		myfile << val;
 		myfile << "\n";
+
 		vfun Stock = P.getStock();
 		myfile << "st = ";
 		myfile << Stock;
 		myfile << "\n";
+		vfun Delta = P.getStock();
+		if(delta){
+		myfile << "delta = ";
+		myfile << Delta;
+		myfile << "\n";}
+
 		myfile << "for i in range(len(st)):\n\tst[i] = max(st[i] - ";
 		myfile <<P.getK()<< " , 0)\n";
-		myfile << "fig, ax = plt.subplots()\nax.plot(x, y, '-b', label='Hedging profolio value')\nax.plot(x, st, '-r', label='(St - K)+')\nleg = ax.legend();\n#Credit https:jakevdp.github.io/PythonDataScienceHandbook/04.06-customizing-legends.html ";
+		if(delta){
+		myfile << "for i in range(len(delta)):\n\tdelta[i] = st[0]*delta[i]\n";
+		}
+		myfile << "fig, ax = plt.subplots()\nax.plot(ht, y, '-b', label='Hedging profolio value')\nax.plot(x, st, '-r', label='(St - K)+')\n";
+		if(delta){
+		myfile << "ax.plot(ht, delta, '-g', label='delta*S0')\n";
+		}
+		myfile << "leg = ax.legend();\n#Credit https:jakevdp.github.io/PythonDataScienceHandbook/04.06-customizing-legends.html ";
 		myfile.close();
 	}
 
