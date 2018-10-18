@@ -28,6 +28,10 @@ public:
 
 	static arma::vec inputStock(std::string fileName);
 
+//	Transforms a csv to a matrix of n lines, p columns. Note the row zero is
+//	systematically eliminated because it contains titles and not doubles.
+	static arma::mat csvToMat(std::string filename,int n, int p);
+
 private:
 	input();
 	virtual ~input();

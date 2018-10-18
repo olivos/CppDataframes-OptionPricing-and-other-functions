@@ -51,7 +51,7 @@ int main() {
 
 
 //	T : Times segment, 0.13 volatility, 0.03 risk free rate, 2920 : strike
-	euCall SP5 = euCall(T,X,0.137,0.03,2540);
+	euCall SP5 = euCall(T,X,0.20,0.03,2550);
 
 //	Time segment representing the moments when portfolio adjustments are performed
 	realSpace HedgingPoints = realSpace(0,1,250);
