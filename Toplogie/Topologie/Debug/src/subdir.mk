@@ -20,6 +20,7 @@ CPP_SRCS += \
 ../src/realSpace.cpp \
 ../src/stoch.cpp \
 ../src/stochastic.cpp \
+../src/stocks.cpp \
 ../src/vecSpace.cpp \
 ../src/vfun.cpp 
 
@@ -40,6 +41,7 @@ OBJS += \
 ./src/realSpace.o \
 ./src/stoch.o \
 ./src/stochastic.o \
+./src/stocks.o \
 ./src/vecSpace.o \
 ./src/vfun.o 
 
@@ -60,6 +62,7 @@ CPP_DEPS += \
 ./src/realSpace.d \
 ./src/stoch.d \
 ./src/stochastic.d \
+./src/stocks.d \
 ./src/vecSpace.d \
 ./src/vfun.d 
 

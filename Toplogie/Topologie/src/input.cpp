@@ -8,6 +8,7 @@
 #include "input.h"
 
 using namespace std;
+using namespace arma;
 
 namespace vSpace {
 
@@ -61,6 +62,32 @@ arma::vec  input::inputStock(std::string fileName) {
 		res[i] = stod(lines[i]);
 	}
 	return res;
+}
+
+arma::mat input::csvToMat(string filename, int n , int p){
+	ifstream ip(filename);
+
+	if(!ip.is_open()) std::cout << "ERROR: File Open" << '\n';
+	mat M = mat(n,p);
+	string temp;
+	string date;
+
+
+	for(int j = 0; j < p-1; j++){
+		getline(ip,temp,',');
+		cout << temp<<"\n";
+	}
+	getline(ip,temp,'\n');
+	cout << temp<<"\n";
+
+	for(int i = 0; i < n; i++){
+	for(int j = 0; j < p; j++){
+		getline(ip,temp,',');
+		M(i,j) =stod(temp);
+	}
+	}
+	ip.close();
+	return M;
 }
 
 input::~input() {
