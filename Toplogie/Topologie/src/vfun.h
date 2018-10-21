@@ -26,6 +26,7 @@ namespace vSpace {
 class vfun: public function {
 public:
 	vfun(vecSpace E,arma::mat M);
+	vfun();
 	virtual ~vfun();
 //	virtual arma::vec diff ();
 

@@ -26,6 +26,7 @@
 #include "input.h"
 #include "Hedging.h"
 #include "stocks.h"
+#include "Vhedging.h"
 
 using namespace arma;
 using namespace std;
@@ -37,7 +38,10 @@ double f (double x){
 
 int main() {
 	stocks S = stocks("/Users/oliv/Documents/ColumbiaMSOR/OptionMetrics/spxibm.csv","/Users/oliv/Documents/ColumbiaMSOR/OptionMetrics/spxibmVol.csv",2,120);
-	cout << S.getData()<<"\n";
-	cout << S.getPrices();
+	S.hedge();
+	//	vector<euCall> calls = S.gen_calls();
+//	vec Prix = (S.getPrices()).col(0);
+//
+//	Vhedging H = Vhedging(calls[0],Prix);
 	return 0;
 }

@@ -19,6 +19,7 @@ namespace vSpace {
 
 class euCall: public vecSpace {
 public:
+	euCall();
 	euCall(realSpace T,realSpace X, double sigma, double r, double K);
 	virtual ~euCall();
 
@@ -89,6 +90,14 @@ public:
 
 	virtual double getK() const {
 		return K;
+	}
+
+	double getR() const {
+		return r;
+	}
+
+	double getSigma() const {
+		return sigma;
 	}
 
 protected:

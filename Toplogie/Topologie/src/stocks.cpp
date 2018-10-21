@@ -13,12 +13,15 @@ using namespace arma;
 namespace vSpace {
 
 // use ticker in ascending order when querrying.
-stocks::stocks(std::string filename,std::string filenameV, int nbStocks, int nbLines, int nbLinesVol):nbStocks(nbStocks) {
+stocks::stocks(std::string filename,std::string filenameV, int nbStocks, int nbLines, int nbLinesVol,
+double r):nbStocks(nbStocks),r(r) {
 	days = (nbLines)/nbStocks;
+	double dDays = days;
+	T = realSpace(0,dDays/250,days-1);
 
 	ifstream ip(filename);
 
-	data = mat(3,nbStocks);
+	data = mat(5,nbStocks);
 	Prices = mat(days,nbStocks);
 
 	string temp;
@@ -38,6 +41,8 @@ stocks::stocks(std::string filename,std::string filenameV, int nbStocks, int nbL
 
 		getline(ip,temp,'\n');
 		Prices(0,s) =stod(temp);
+		data(3,s) = stod(temp); /* min val */
+		data(4,s) = stod(temp); /* max val*/
 	}
 //	remaining rows : only get the stock price
 	for(int d = 1; d < days; d++){
@@ -47,6 +52,14 @@ stocks::stocks(std::string filename,std::string filenameV, int nbStocks, int nbL
 			}
 			getline(ip,temp,'\n');
 			Prices(d,s) =stod(temp);
+//			min
+			if(stod(temp) < data(3,s)){
+				data(3,s)  = stod(temp);
+			}
+//			max
+			if(stod(temp) > data(4,s)){
+				data(4,s)  = stod(temp);
+			}
 		}
 	}
 	ip.close();
@@ -97,6 +110,29 @@ stocks::stocks(std::string filename,std::string filenameV, int nbStocks, int nbL
 
 stocks::~stocks() {
 	// TODO Auto-generated destructor stub
+}
+
+
+
+std::vector<euCall> stocks::gen_calls() {
+	vector<euCall> res(nbStocks);
+	for(int s = 0 ; s < nbStocks ; s++){
+		res[s] = euCall(T,realSpace(data(3,s), data(4,s),nX),data(2,s),r,data(1,s) );
+	}
+	return res;
+}
+
+std::vector<Vhedging> stocks::hedge( bool disp) {
+	vector<euCall> calls = gen_calls();
+	vector<Vhedging> res(nbStocks);
+
+	for(int s = 0 ; s < nbStocks ; s++){
+		cout << "Strike is" << data(1,s) << "IV is" << data(2,s)<< "\n";
+		res[s] = Vhedging(calls[s], Prices, s, disp );
+
+	}
+	return res;
+
 }
 
 } /* namespace vSpace */

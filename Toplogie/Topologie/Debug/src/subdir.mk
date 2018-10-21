@@ -7,6 +7,7 @@ CPP_SRCS += \
 ../src/Hedging.cpp \
 ../src/Ndist.cpp \
 ../src/Topologie.cpp \
+../src/Vhedging.cpp \
 ../src/brw.cpp \
 ../src/bs.cpp \
 ../src/ed.cpp \
@@ -28,6 +29,7 @@ OBJS += \
 ./src/Hedging.o \
 ./src/Ndist.o \
 ./src/Topologie.o \
+./src/Vhedging.o \
 ./src/brw.o \
 ./src/bs.o \
 ./src/ed.o \
@@ -49,6 +51,7 @@ CPP_DEPS += \
 ./src/Hedging.d \
 ./src/Ndist.d \
 ./src/Topologie.d \
+./src/Vhedging.d \
 ./src/brw.d \
 ./src/bs.d \
 ./src/ed.d \

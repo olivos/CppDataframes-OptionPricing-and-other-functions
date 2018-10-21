@@ -14,6 +14,9 @@ using namespace arma;
 
 namespace vSpace {
 
+euCall::euCall() {
+}
+
 euCall::euCall(realSpace T,realSpace X, double sigma, double r, double K): vecSpace(T,X),sigma(sigma),r(r),K(K) {
 }
 

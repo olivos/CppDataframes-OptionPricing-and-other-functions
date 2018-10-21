@@ -10,14 +10,14 @@ using namespace arma;
 
 namespace vSpace {
 
-Hedging::Hedging(euCall C, vfun& BS, realSpace HedgingTimes, bool display):euCall(C),HedgingTimes(HedgingTimes),Stock(BS) {
+Hedging::Hedging(euCall C, vfun* BS, realSpace HedgingTimes, bool display):euCall(C),HedgingTimes(HedgingTimes),Stock(BS) {
 	n = HedgingTimes.getNx();
 	B = vec(n+1);/* vector representing evolution of the value of the hedgers bank account (does not count tha value of the underlying stock he holds*/
 	thetaV = vec(n+1); /* amount of stock held by the hedger at instant i */
 	value = vec(n+1); /* value of the hedgers portfolio at instant i = B+theta*St */
 
 	int nH = HedgingTimes.getNx();
-	double S0 = BS(HedgingTimes(0));
+	double S0 = (*Stock)(HedgingTimes(0));
 
 //	Initialization
 
@@ -39,21 +39,21 @@ Hedging::Hedging(euCall C, vfun& BS, realSpace HedgingTimes, bool display):euCal
 		B(i) = B(i-1)*exp(r*deltas(0)); /* Interest return */
 
 		if(display){
-		cout << "Step"<<i << "St " << BS(HedgingTimes(i)) << "after interests" << B(i);
+		cout << "Step"<<i << "St " << (*Stock)(HedgingTimes(i)) << "after interests" << B(i);
 		}
 
-		B(i) = B(i) + theta*BS(HedgingTimes(i)); /* Selling theta underlying */
+		B(i) = B(i) + theta*(*Stock)(HedgingTimes(i)); /* Selling theta underlying */
 		value(i) = B(i);
 
 		if(display){
 		cout << "after sale" << B(i);
 		}
 
-		theta = Delta( HedgingTimes(i) ,BS(HedgingTimes(i))  );
+		theta = Delta( HedgingTimes(i) ,(*Stock)(HedgingTimes(i))  );
 		thetaV(i) = theta;
 
 
-		B(i) = B(i) - theta*BS(HedgingTimes(i)); /* Buying newTheta underlying */
+		B(i) = B(i) - theta*(*Stock)(HedgingTimes(i)); /* Buying newTheta underlying */
 
 		if(display){
 		cout << "newtheta" << theta << "after buying" << B(i)<<endl;
@@ -65,18 +65,21 @@ Hedging::Hedging(euCall C, vfun& BS, realSpace HedgingTimes, bool display):euCal
 	B(nH) = B(nH-1)*exp(r*deltas(0)); /* Interest return */
 
 	if(display){
-	cout << "Last Step St " << BS(HedgingTimes(nH)) << "after interests" << B(nH);
+	cout << "Last Step St " << (*Stock)(HedgingTimes(nH)) << "after interests" << B(nH);
 	}
 	thetaV(nH) = theta;
-	B(nH) = B(nH) + theta*BS(X(nH)); /* Selling theta underlying */
+	B(nH) = B(nH) + theta*(*Stock)(X(nH)); /* Selling theta underlying */
 	value(nH) = B(nH);
 	cout << "after sale" << B(nH)<< "\n";
 
-	if ( BS(X(nH)) > K ){
-		B(nH) = B(nH) - BS(X(nH)) + K;
+	if ( (*Stock)(X(nH)) > K ){
+		B(nH) = B(nH) - (*Stock)(X(nH)) + K;
 		cout << "after selling the stock to the customer:"<< B(nH)<< "\n";
 	}
 
+}
+
+Hedging::Hedging():Stock(0) {
 }
 
 Hedging::~Hedging() {

@@ -1,12 +1,13 @@
- /*
- * Hedging.h
+/*
+ * Vhedging.h
  *
- *  Created on: Oct 8, 2018
+ *  Created on: Oct 20, 2018
  *      Author: oliv
  */
 
-#ifndef HEDGING_H_
-#define HEDGING_H_
+#ifndef VHEDGING_H_
+#define VHEDGING_H_
+
 
 #include "euCall.h"
 #include "vecSpace.h"
@@ -14,13 +15,14 @@
 #include "math.h"
 #include "vfun.h"
 
+
 namespace vSpace {
 
-class Hedging: public vSpace::euCall {
+class Vhedging: public vSpace::euCall {
 public:
-	Hedging();
-	Hedging(euCall C,vfun* BS,realSpace HedgingTimes, bool display = true);
-	virtual ~Hedging();
+	Vhedging();
+	Vhedging(euCall C,arma::mat& Stock, int s, bool display = true);
+	virtual ~Vhedging();
 
 	const arma::vec& getB() const {
 		return B;
@@ -38,20 +40,16 @@ public:
 		return HedgingTimes;
 	}
 
-	const vfun& getStock() const {
-		return *Stock;
-	}
 
 private :
 	realSpace HedgingTimes;
-	int n;
 	arma::vec B;
 	arma::vec thetaV;
 	arma::vec value;
-	vfun* Stock;
 
 };
 
+
 } /* namespace vSpace */
 
-#endif /* HEDGING_H_ */
+#endif /* VHEDGING_H_ */

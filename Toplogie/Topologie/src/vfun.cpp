@@ -46,4 +46,5 @@ double vSpace::vfun::operator ()(double x, double y) {
 
 } /* namespace vSpace */
 
-
+vSpace::vfun::vfun() {
+}
