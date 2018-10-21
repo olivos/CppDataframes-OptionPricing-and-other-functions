@@ -13,6 +13,8 @@
 #include "Ndist.h"
 #include "math.h"
 #include "vfun.h"
+#include <string>
+#include <iostream>
 
 namespace vSpace {
 

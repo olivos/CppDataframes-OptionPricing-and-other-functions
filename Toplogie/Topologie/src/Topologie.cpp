@@ -36,7 +36,8 @@ using namespace vSpace;
 
 
 int main() {
-	stocks S = stocks("/Users/oliv/Documents/ColumbiaMSOR/OptionMetrics/138FromSNP8400.csv","/Users/oliv/Documents/ColumbiaMSOR/OptionMetrics/138FromSNP8400Vol.csv",140,8400);
+//	stocks S = stocks("/Users/oliv/Documents/ColumbiaMSOR/OptionMetrics/133FromSNP7980.csv","/Users/oliv/Documents/ColumbiaMSOR/OptionMetrics/133FromSNP7980Vol.csv",133,7980);
+	stocks S = stocks("/Users/oliv/Documents/ColumbiaMSOR/OptionMetrics/133FromSNP2017.csv","/Users/oliv/Documents/ColumbiaMSOR/OptionMetrics/133FromSNP2017Vol.csv",133,7980);
 	S.hedgePut();
 	//	vector<euCall> calls = S.gen_calls();
 //	vec Prix = (S.getPrices()).col(0);

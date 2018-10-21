@@ -7,10 +7,15 @@
 
 #include "Hedging.h"
 using namespace arma;
+using namespace std;
 
 namespace vSpace {
 
+
+
 Hedging::Hedging(euCall C, vfun* BS, realSpace HedgingTimes, bool display):euCall(C),HedgingTimes(HedgingTimes),Stock(BS) {
+
+
 	n = HedgingTimes.getNx();
 	B = vec(n+1);/* vector representing evolution of the value of the hedgers bank account (does not count tha value of the underlying stock he holds*/
 	thetaV = vec(n+1); /* amount of stock held by the hedger at instant i */
@@ -76,6 +81,7 @@ Hedging::Hedging(euCall C, vfun* BS, realSpace HedgingTimes, bool display):euCal
 		B(nH) = B(nH) - (*Stock)(X(nH)) + K;
 		cout << "after selling the stock to the customer:"<< B(nH)<< "\n";
 	}
+
 
 }
 
