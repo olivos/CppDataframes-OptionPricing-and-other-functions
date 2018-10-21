@@ -1,31 +1,23 @@
 /*
- * Vhedging.h
+ * VPuthedging.h
  *
  *  Created on: Oct 20, 2018
  *      Author: oliv
  */
 
-#ifndef VHEDGING_H_
-#define VHEDGING_H_
+#ifndef VPUTHEDGING_H_
+#define VPUTHEDGING_H_
 
-
-#include "euCall.h"
-#include "euPut.h"
-#include "vecSpace.h"
-#include "Ndist.h"
-#include "math.h"
-#include "vfun.h"
-
+#include "EuPut.h"
 
 namespace vSpace {
 
-class Vhedging: public vSpace::euCall {
+class VPuthedging : public EuPut {
 public:
-	Vhedging();
-	Vhedging(euCall C,arma::mat& Stock, int s, bool display = true);
-	Vhedging(EuPut C,arma::mat& Stock, int s, bool display = true);
+	VPuthedging();
+	VPuthedging(EuPut C,arma::mat& Stock, int s, bool display = true);
 
-	virtual ~Vhedging();
+	virtual ~VPuthedging();
 
 	const arma::vec& getB() const {
 		return B;
@@ -49,10 +41,8 @@ private :
 	arma::vec B;
 	arma::vec thetaV;
 	arma::vec value;
-
 };
-
 
 } /* namespace vSpace */
 
-#endif /* VHEDGING_H_ */
+#endif /* VPUTHEDGING_H_ */

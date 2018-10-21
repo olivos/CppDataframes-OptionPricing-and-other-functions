@@ -4,9 +4,11 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../src/EuPut.cpp \
 ../src/Hedging.cpp \
 ../src/Ndist.cpp \
 ../src/Topologie.cpp \
+../src/VPuthedging.cpp \
 ../src/Vhedging.cpp \
 ../src/brw.cpp \
 ../src/bs.cpp \
@@ -26,9 +28,11 @@ CPP_SRCS += \
 ../src/vfun.cpp 
 
 OBJS += \
+./src/EuPut.o \
 ./src/Hedging.o \
 ./src/Ndist.o \
 ./src/Topologie.o \
+./src/VPuthedging.o \
 ./src/Vhedging.o \
 ./src/brw.o \
 ./src/bs.o \
@@ -48,9 +52,11 @@ OBJS += \
 ./src/vfun.o 
 
 CPP_DEPS += \
+./src/EuPut.d \
 ./src/Hedging.d \
 ./src/Ndist.d \
 ./src/Topologie.d \
+./src/VPuthedging.d \
 ./src/Vhedging.d \
 ./src/brw.d \
 ./src/bs.d \

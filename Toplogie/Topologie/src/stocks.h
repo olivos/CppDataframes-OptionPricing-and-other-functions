@@ -17,6 +17,7 @@
 #include "Hedging.h"
 #include "euCall.h"
 #include "Vhedging.h"
+#include "VPuthedging.h"
 
 namespace vSpace {
 
@@ -33,8 +34,11 @@ public:
 		return data;
 	}
 	std::vector<euCall> gen_calls(); /* returns a vector containing an atm european call for each stock*/
+	std::vector<EuPut> gen_puts(); /* returns a vector containing an atm european put for each stock*/
 
 	std::vector<Vhedging> hedge( bool disp = false);
+	std::vector<VPuthedging> hedgePut( bool disp = false);
+
 
 private:
 	arma::mat Prices;/* one row vec for each stock containing its prices*/

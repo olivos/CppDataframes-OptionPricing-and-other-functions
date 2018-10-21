@@ -27,21 +27,21 @@
 #include "Hedging.h"
 #include "stocks.h"
 #include "Vhedging.h"
+#include "EuPut.h"
 
 using namespace arma;
 using namespace std;
 using namespace vSpace;
 
-double f (double x){
-	return log(x/2902.54);
-}
+
 
 int main() {
-	stocks S = stocks("/Users/oliv/Documents/ColumbiaMSOR/OptionMetrics/spxibm.csv","/Users/oliv/Documents/ColumbiaMSOR/OptionMetrics/spxibmVol.csv",2,120);
-	S.hedge();
+	stocks S = stocks("/Users/oliv/Documents/ColumbiaMSOR/OptionMetrics/138FromSNP8400.csv","/Users/oliv/Documents/ColumbiaMSOR/OptionMetrics/138FromSNP8400Vol.csv",140,8400);
+	S.hedgePut();
 	//	vector<euCall> calls = S.gen_calls();
 //	vec Prix = (S.getPrices()).col(0);
 //
 //	Vhedging H = Vhedging(calls[0],Prix);
+//	EuPut p = EuPut(realSpace(0,1,100),realSpace(0,1,100),0.12,0.03,20);
 	return 0;
 }

@@ -121,16 +121,39 @@ std::vector<euCall> stocks::gen_calls() {
 	}
 	return res;
 }
+std::vector<EuPut> stocks::gen_puts() {
+	vector<EuPut> res(nbStocks);
+	for(int s = 0 ; s < nbStocks ; s++){
+		res[s] = EuPut(T,realSpace(data(3,s), data(4,s),nX),data(2,s),r,data(1,s) );
+	}
+	return res;
+}
 
 std::vector<Vhedging> stocks::hedge( bool disp) {
 	vector<euCall> calls = gen_calls();
 	vector<Vhedging> res(nbStocks);
 
 	for(int s = 0 ; s < nbStocks ; s++){
-		cout << "Strike is" << data(1,s) << "IV is" << data(2,s)<< "\n";
+			cout << "Strike is" << data(1,s) << "IV is" << data(2,s)<< "\n";
+
 		res[s] = Vhedging(calls[s], Prices, s, disp );
 
 	}
+	return res;
+
+}
+
+std::vector<VPuthedging> stocks::hedgePut( bool disp) {
+	vector<EuPut> puts = gen_puts();
+	vector<VPuthedging> res(nbStocks);
+	double avgGainLoss = 0;
+	for(int s = 0 ; s < nbStocks ; s++){
+			cout << "Strike is" << data(1,s) << "IV is" << data(2,s)<< "\n";
+
+		res[s] = VPuthedging(puts[s], Prices, s, disp );
+		avgGainLoss = avgGainLoss + (res[s].getB())(days-1)/Prices(0,s);
+	}
+	cout << avgGainLoss << "\n";
 	return res;
 
 }

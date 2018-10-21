@@ -1,24 +1,27 @@
 /*
- * Vhedging.cpp
+ * VPuthedging.cpp
  *
  *  Created on: Oct 20, 2018
  *      Author: oliv
  */
 
-#include "Vhedging.h"
-
+#include "VPuthedging.h"
 using namespace arma;
 using namespace std;
 
 namespace vSpace {
 
-Vhedging::Vhedging() {
+VPuthedging::VPuthedging() {
 	// TODO Auto-generated constructor stub
 
 }
 
-Vhedging::Vhedging(euCall C, arma::mat& Stock,int s,  bool display):euCall(C){
-	HedgingTimes = C.getX();
+VPuthedging::~VPuthedging() {
+	// TODO Auto-generated destructor stub
+}
+
+VPuthedging::VPuthedging(EuPut P, arma::mat& Stock,int s,  bool display):EuPut(P){
+	HedgingTimes = P.getX();
 	int nH = HedgingTimes.getNx();
 
 	B = vec(nH+1);/* vector representing evolution of the value of the hedgers bank account (does not count tha value of the underlying stock he holds*/
@@ -31,9 +34,9 @@ Vhedging::Vhedging(euCall C, arma::mat& Stock,int s,  bool display):euCall(C){
 
 	double theta = Delta(0,S0);
 
-	B(0) = C(0,S0) - theta*S0;
+	B(0) = P(0,S0) - theta*S0;
 	thetaV(0) = theta;
-	value(0) = C(0,S0);
+	value(0) = P(0,S0);
 
 
 
@@ -80,15 +83,12 @@ Vhedging::Vhedging(euCall C, arma::mat& Stock,int s,  bool display):euCall(C){
 	value(nH) = B(nH);
 	cout << "after sale" << B(nH)<< "\n";
 
-	if ( Stock(nH,s) > K ){
-		B(nH) = B(nH) - Stock(nH,s) + K;
+	if ( Stock(nH,s) < K ){
+		B(nH) = B(nH) + Stock(nH,s) - K;
 		cout << "after selling the stock to the customer:"<< B(nH)<< "\n";
 	}
 
 }
 
-Vhedging::~Vhedging() {
-	// TODO Auto-generated destructor stub
-}
 
 } /* namespace vSpace */
