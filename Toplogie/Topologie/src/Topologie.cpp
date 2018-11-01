@@ -45,23 +45,31 @@ int main() {
 //	stocks S = stocks("/Users/oliv/Documents/ColumbiaMSOR/OptionMetrics/133FromSNP2008.csv","/Users/oliv/Documents/ColumbiaMSOR/OptionMetrics/133FromSNP2008Vol.csv",133,7980);
 	stocks S = stocks("/Users/oliv/Documents/ColumbiaMSOR/OptionMetrics/snp2013_2014_273.csv","/Users/oliv/Documents/ColumbiaMSOR/OptionMetrics/snp2013_2014_273Vol.csv",1,273);
 
+// Procedure : 
+// Import Data as csv from Option metrics with :
+// 1st file from secutities with only sedID, date, opening price
+// 2nd file from iterpolatedVol with secid,date,days,impl_volatility,impl_strike,cp_flag,index_flag
+
+// Warning 1st file must be sorted in increasing order with unix end of line characters
+
+//  returns a vector containing the one VPuthedging obeject for each stock imported, and prints the resuls of the hedging
+	vector<VPuthedging> Hedges = S.hedgePut();
 
 
-//	S.hedgePut();
 	//	vector<euCall> calls = S.gen_calls();
-	vec Prix = (S.getPrices()).col(0);
+	// vec Prix = (S.getPrices()).col(0);
 //
 //	Vhedging H = Vhedging(calls[0],Prix);
-	realSpace T = realSpace(0,1,272);
-	realSpace X = realSpace(38.0,61.12,100);
-	cout << Prix;
-	EuCallPDV p1 = EuCallPDV(T,X,0.1160,0.22,0.03,1514);
-	VCallPDVhedging H1 = VCallPDVhedging(p1,Prix,0);
-	outputC::writeHedge( H1, Prix, 0 ,"/Users/oliv/Documents/ColumbiaMSOR/OptionMetrics/HedgePDV.py",true );
+	// realSpace T = realSpace(0,1,272);
+	// realSpace X = realSpace(38.0,61.12,100);
+	// cout << Prix;
+	// EuCallPDV p1 = EuCallPDV(T,X,0.1160,0.22,0.03,1514);
+	// VCallPDVhedging H1 = VCallPDVhedging(p1,Prix,0);
+	// outputC::writeHedge( H1, Prix, 0 ,"/Users/oliv/Documents/ColumbiaMSOR/OptionMetrics/HedgePDV.py",true );
 
 
-	EuCallPDV p2 = EuCallPDV(T,X,0.1190,0.15,0.03,1514);
-	VCallPDVhedging H2 = VCallPDVhedging(p2,Prix,0,false);
-	outputC::writeHedge( H2, Prix, 0 ,"/Users/oliv/Documents/ColumbiaMSOR/OptionMetrics/Hedge.py",true );
+	// EuCallPDV p2 = EuCallPDV(T,X,0.1190,0.15,0.03,1514);
+	// VCallPDVhedging H2 = VCallPDVhedging(p2,Prix,0,false);
+	// outputC::writeHedge( H2, Prix, 0 ,"/Users/oliv/Documents/ColumbiaMSOR/OptionMetrics/Hedge.py",true );
 	return 0;
 }
