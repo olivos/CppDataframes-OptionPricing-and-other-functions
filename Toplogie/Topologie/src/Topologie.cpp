@@ -28,6 +28,10 @@
 #include "stocks.h"
 #include "Vhedging.h"
 #include "EuPut.h"
+#include "EuPutPDV.h"
+#include "VPutPDVhedging.h"
+#include "EuCallPDV.h"
+#include "VCallPDVhedging.h"
 
 using namespace arma;
 using namespace std;
@@ -37,12 +41,27 @@ using namespace vSpace;
 
 int main() {
 //	stocks S = stocks("/Users/oliv/Documents/ColumbiaMSOR/OptionMetrics/133FromSNP7980.csv","/Users/oliv/Documents/ColumbiaMSOR/OptionMetrics/133FromSNP7980Vol.csv",133,7980);
-	stocks S = stocks("/Users/oliv/Documents/ColumbiaMSOR/OptionMetrics/133FromSNP2017.csv","/Users/oliv/Documents/ColumbiaMSOR/OptionMetrics/133FromSNP2017Vol.csv",133,7980);
-	S.hedgePut();
+//	stocks S = stocks("/Users/oliv/Documents/ColumbiaMSOR/OptionMetrics/133FromSNP2017.csv","/Users/oliv/Documents/ColumbiaMSOR/OptionMetrics/133FromSNP2017Vol.csv",133,7980);
+//	stocks S = stocks("/Users/oliv/Documents/ColumbiaMSOR/OptionMetrics/133FromSNP2008.csv","/Users/oliv/Documents/ColumbiaMSOR/OptionMetrics/133FromSNP2008Vol.csv",133,7980);
+	stocks S = stocks("/Users/oliv/Documents/ColumbiaMSOR/OptionMetrics/snp2013_2014_273.csv","/Users/oliv/Documents/ColumbiaMSOR/OptionMetrics/snp2013_2014_273Vol.csv",1,273);
+
+
+
+//	S.hedgePut();
 	//	vector<euCall> calls = S.gen_calls();
-//	vec Prix = (S.getPrices()).col(0);
+	vec Prix = (S.getPrices()).col(0);
 //
 //	Vhedging H = Vhedging(calls[0],Prix);
-//	EuPut p = EuPut(realSpace(0,1,100),realSpace(0,1,100),0.12,0.03,20);
+	realSpace T = realSpace(0,1,272);
+	realSpace X = realSpace(38.0,61.12,100);
+	cout << Prix;
+	EuCallPDV p1 = EuCallPDV(T,X,0.1160,0.22,0.03,1514);
+	VCallPDVhedging H1 = VCallPDVhedging(p1,Prix,0);
+	outputC::writeHedge( H1, Prix, 0 ,"/Users/oliv/Documents/ColumbiaMSOR/OptionMetrics/HedgePDV.py",true );
+
+
+	EuCallPDV p2 = EuCallPDV(T,X,0.1190,0.15,0.03,1514);
+	VCallPDVhedging H2 = VCallPDVhedging(p2,Prix,0,false);
+	outputC::writeHedge( H2, Prix, 0 ,"/Users/oliv/Documents/ColumbiaMSOR/OptionMetrics/Hedge.py",true );
 	return 0;
 }

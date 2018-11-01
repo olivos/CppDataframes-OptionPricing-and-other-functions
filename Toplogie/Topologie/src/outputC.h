@@ -12,6 +12,8 @@
 #include <fstream>
 #include <armadillo>
 #include "Hedging.h"
+#include "VPutPDVhedging.h"
+#include "VCallPDVhedging.h"
 
 
 
@@ -154,6 +156,95 @@ public:
 		myfile.close();
 	}
 
+	static void writeHedge( VPutPDVhedging& P,arma::mat& Prices, int s, std::string fileName, bool delta = false){
+
+		std::ofstream myfile;
+		myfile.open(fileName , std::ios::trunc );
+
+		myfile << "import matplotlib.pyplot as plt"<<"\n\n";
+		myfile << "x =";
+		realSpace T  = P.getX();
+		myfile << T;
+		myfile << "\n";
+
+		realSpace HedgingTimes = P.getHedgingTimes();
+		myfile << "ht =";
+		myfile << HedgingTimes;
+		myfile << "\n";
+
+		myfile << "y =";
+		vfun val = vfun(HedgingTimes,P.getValue());
+		myfile << val;
+		myfile << "\n";
+
+		arma::vec S = Prices.col(s); /* Inefficient would require to modify the vec class !!!*/
+		vfun Stock = vfun(T,S);
+		myfile << "st = ";
+		myfile << Stock;
+		myfile << "\n";
+		vfun Delta = vfun(T,P.getDelta());
+		if(delta){
+		myfile << "delta = ";
+		myfile << Delta;
+		myfile << "\n";}
+
+		myfile << "for i in range(len(st)):\n\tst[i] = max("<< P.getK() << "-st[i], ";
+		myfile <<"0)\n";
+		if(delta){
+		myfile << "for i in range(len(delta)):\n\tdelta[i] = st[0]*delta[i]\n";
+		}
+		myfile << "fig, ax = plt.subplots()\nax.plot(ht, y, '-b', label='Hedging profolio value')\nax.plot(x, st, '-r', label='(St - K)+')\n";
+		if(delta){
+		myfile << "ax.plot(ht, delta, '-g', label='delta*S0')\n";
+		}
+		myfile << "leg = ax.legend();\n#Credit https:jakevdp.github.io/PythonDataScienceHandbook/04.06-customizing-legends.html ";
+		myfile.close();
+	}
+
+	static void writeHedge( VCallPDVhedging& P,arma::mat& Prices, int s, std::string fileName, bool vol = false){
+
+		std::ofstream myfile;
+		myfile.open(fileName , std::ios::trunc );
+
+		myfile << "import matplotlib.pyplot as plt"<<"\n\n";
+		myfile << "x =";
+		realSpace T  = P.getX();
+		myfile << T;
+		myfile << "\n";
+
+		realSpace HedgingTimes = P.getHedgingTimes();
+		myfile << "ht =";
+		myfile << HedgingTimes;
+		myfile << "\n";
+
+		myfile << "y =";
+		vfun val = vfun(HedgingTimes,P.getValue());
+		myfile << val;
+		myfile << "\n";
+
+		arma::vec S = Prices.col(s); /* Inefficient would require to modify the vec class !!!*/
+		vfun Stock = vfun(T,S);
+		myfile << "st = ";
+		myfile << Stock;
+		myfile << "\n";
+		vfun Vol = vfun(T,P.getVol());
+		if(vol){
+		myfile << "vol = ";
+		myfile << Vol;
+		myfile << "\n";}
+
+		myfile << "for i in range(len(st)):\n\tst[i] = max(st[i] - ";
+		myfile <<P.getK()<< " , 0)\n";
+		if(vol){
+		myfile << "for i in range(len(vol)):\n\tvol[i] = st[0]*vol[i]\n";
+		}
+		myfile << "fig, ax = plt.subplots()\nax.plot(ht, y, '-b', label='Hedging profolio value')\nax.plot(x, st, '-r', label='(St - K)+')\n";
+		if(vol){
+		myfile << "ax.plot(ht, vol, '-g', label='vol*S0')\n";
+		}
+		myfile << "leg = ax.legend();\n#Credit https:jakevdp.github.io/PythonDataScienceHandbook/04.06-customizing-legends.html ";
+		myfile.close();
+	}
 
 
 

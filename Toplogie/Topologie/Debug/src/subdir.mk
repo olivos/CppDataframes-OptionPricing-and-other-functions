@@ -4,10 +4,14 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../src/EuCallPDV.cpp \
 ../src/EuPut.cpp \
+../src/EuPutPDV.cpp \
 ../src/Hedging.cpp \
 ../src/Ndist.cpp \
 ../src/Topologie.cpp \
+../src/VCallPDVhedging.cpp \
+../src/VPutPDVhedging.cpp \
 ../src/VPuthedging.cpp \
 ../src/Vhedging.cpp \
 ../src/brw.cpp \
@@ -28,10 +32,14 @@ CPP_SRCS += \
 ../src/vfun.cpp 
 
 OBJS += \
+./src/EuCallPDV.o \
 ./src/EuPut.o \
+./src/EuPutPDV.o \
 ./src/Hedging.o \
 ./src/Ndist.o \
 ./src/Topologie.o \
+./src/VCallPDVhedging.o \
+./src/VPutPDVhedging.o \
 ./src/VPuthedging.o \
 ./src/Vhedging.o \
 ./src/brw.o \
@@ -52,10 +60,14 @@ OBJS += \
 ./src/vfun.o 
 
 CPP_DEPS += \
+./src/EuCallPDV.d \
 ./src/EuPut.d \
+./src/EuPutPDV.d \
 ./src/Hedging.d \
 ./src/Ndist.d \
 ./src/Topologie.d \
+./src/VCallPDVhedging.d \
+./src/VPutPDVhedging.d \
 ./src/VPuthedging.d \
 ./src/Vhedging.d \
 ./src/brw.d \

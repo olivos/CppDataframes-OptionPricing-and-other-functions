@@ -177,14 +177,14 @@ std::vector<Vhedging> stocks::hedge( bool disp) {
 std::vector<VPuthedging> stocks::hedgePut( bool disp) {
 	vector<EuPut> puts = gen_puts();
 	vector<VPuthedging> res(nbStocks);
-	double avgGainLoss = 0;
+	vec hData = vec(nbStocks);
 	for(int s = 0 ; s < nbStocks ; s++){
-			cout << "Strike is" << data(1,s) << "IV is" << data(2,s)<< "\n";
+			cout <<"SecId" << data(0,s)<< "Strike is" << data(1,s) << "IV is" << data(2,s)<< "\n";
 
 		res[s] = VPuthedging(puts[s], Prices, s, disp );
-		avgGainLoss = avgGainLoss + abs((res[s].getB())(days-1)/Prices(0,s));
+		hData[s] = abs((res[s].getB())(days-1)/Prices(0,s));
 	}
-	cout << avgGainLoss/nbStocks << "\n";
+	cout << "mean : " << mean(hData) << " stdDev :" << stddev(hData) << "median : " << median(hData) << " range :" << range(hData) << "\n";
 	return res;
 
 }
