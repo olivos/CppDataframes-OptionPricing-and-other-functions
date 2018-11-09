@@ -9,7 +9,7 @@
 #define STOCH_H_
 
 #include "vfun.h"
-#include "brw.h"
+#include "stochastic.h"
 #include <string>
 #include "input.h"
 #include "function.h"

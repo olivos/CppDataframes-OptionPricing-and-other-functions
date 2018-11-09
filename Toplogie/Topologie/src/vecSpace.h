@@ -23,8 +23,8 @@ class vecSpace {
 public:
 //	constructors
 	vecSpace();
-	vecSpace(vSpace::realSpace X);
-	vecSpace(vSpace::realSpace X,vSpace::realSpace Y);
+	vecSpace(const vSpace::realSpace& X);
+	vecSpace(const vSpace::realSpace& X,const vSpace::realSpace& Y);
 
 //	destructor
 	virtual ~vecSpace();
@@ -40,14 +40,10 @@ public:
     }
 
 
-//	()override
-	virtual int index(double x); /* Returns index of x in the vector */
-	virtual std::pair<int, int> index(double x,double y); /* Returns index (i,j) of (x,y) in the matrix */
+	virtual int index(const double& x) const; /* Returns index of x in the vector */
+	virtual std::pair<int, int> index(const double& x,const double& y) const; /* Returns index (i,j) of (x,y) in the matrix */
 
-	virtual double operator()(double x);
 
-//	virtual double operator()(int n);
-//	virtual arma::vec operator()(int i, int j);
 	const arma::vec& getDeltas() const;
 	int getDim() const;
 

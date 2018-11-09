@@ -20,13 +20,12 @@ namespace vSpace {
 
 class fun: public function {
 public:
-	fun(vecSpace E,double (&f) (double));
+	fun();
+	fun(const vecSpace& E,double (&f) (double));
 	virtual ~fun();
 
-	virtual double operator() (double x);
-	virtual arma::vec diff();
+	virtual double operator() (const double&  x);
 
-	vSpace::vfun derive ();
 
 //	override of <<
     friend std::ostream& operator<<(std::ostream& os, const fun& E){

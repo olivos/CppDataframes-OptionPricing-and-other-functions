@@ -8,20 +8,22 @@
 #include "vfun.h"
 
 namespace vSpace {
+vfun::vfun():function(vecSpace()), M(arma::mat()) {
+}
 
-vfun::vfun(vecSpace E,arma::mat  M): function(E),M(M)  {
+vfun::vfun(const vecSpace& E,const arma::mat&  M): function(E),M(M)  {
 }
 
 vfun::~vfun() {
 	// TODO Auto-generated destructor stub
 }
 
-double vSpace::vfun::operator ()(double x) {
+double vSpace::vfun::operator ()(const double& x) const {
 		int i = (x-init(0))/deltas(0);
 		return M(i);
 }
 
-double vSpace::vfun::operator ()(double x, double y) {
+double vSpace::vfun::operator ()(const double& x,const double& y) const{
 	int i = (x-init(0))/deltas(0);
 	int j = (y-init(1))/deltas(1);
 	return M(i,j);
@@ -46,5 +48,4 @@ double vSpace::vfun::operator ()(double x, double y) {
 
 } /* namespace vSpace */
 
-vSpace::vfun::vfun() {
-}
+

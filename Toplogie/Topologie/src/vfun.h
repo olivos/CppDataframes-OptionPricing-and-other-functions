@@ -25,13 +25,13 @@ namespace vSpace {
 
 class vfun: public function {
 public:
-	vfun(vecSpace E,arma::mat M);
+	vfun(const vecSpace& E,const arma::mat& M);
 	vfun();
 	virtual ~vfun();
 //	virtual arma::vec diff ();
 
-	virtual double operator() (double x);
-	virtual double operator() (double x, double y);
+	virtual double operator() (const double& x) const;
+	virtual double operator() (const double& x,const double& y) const;
 
 
     friend std::ostream& operator<<(std::ostream& os, const vfun& E){
@@ -71,12 +71,12 @@ public:
     	return os;
     }
 
-	const arma::mat getM() const {
+	const arma::mat& getM() const {
 		return M;
 	}
 
 protected :
-	arma::mat M;
+	const arma::mat& M;
 };
 
 } /* namespace vSpace */

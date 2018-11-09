@@ -14,7 +14,7 @@ realSpace::realSpace() : xi(0),xf(0),nx(0),hx(0) {
 
 }
 
-realSpace::realSpace(double xi, double xf, int nx) : xi(xi),xf(xf),nx(nx){
+realSpace::realSpace(const double& xi,const double& xf,const int& nx) : xi(xi),xf(xf),nx(nx){
 	hx = (xf-xi)/nx;
 
 }
@@ -24,7 +24,7 @@ realSpace::~realSpace() {
 	// TODO Auto-generated destructor stub
 }
 
-double realSpace::operator ()(int n) {
+double realSpace::operator ()(int const& n) const {
 	return xi + n*hx;
 }
 

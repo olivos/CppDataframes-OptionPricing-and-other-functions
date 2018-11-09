@@ -15,9 +15,9 @@ namespace vSpace {
 
 } /* namespace vSpace */
 
-vSpace::vecSpace::vecSpace() : dim(0) {}
+vSpace::vecSpace::vecSpace() : X(realSpace(0,0,1)),Y(realSpace(0,0,1)), dim(0) {}
 
-vSpace::vecSpace::vecSpace(vSpace::realSpace X) : X(X),dim(1) {
+vSpace::vecSpace::vecSpace(const vSpace::realSpace& X) : X(X),Y(realSpace(0,0,1)),dim(1) {
 	sizes = ivec(dim);
 	deltas = vec(dim);
 	init = vec(dim);
@@ -31,7 +31,7 @@ vSpace::vecSpace::vecSpace(vSpace::realSpace X) : X(X),dim(1) {
 
 }
 
-vSpace::vecSpace::vecSpace(vSpace::realSpace X, vSpace::realSpace Y) : X(X),Y(Y),dim(2) {
+vSpace::vecSpace::vecSpace(const vSpace::realSpace& X,const vSpace::realSpace& Y) : X(X),Y(Y),dim(2) {
 	sizes = ivec(dim);
 	deltas = vec(dim);
 	init = vec(dim);
@@ -50,11 +50,11 @@ vSpace::vecSpace::vecSpace(vSpace::realSpace X, vSpace::realSpace Y) : X(X),Y(Y)
 vSpace::vecSpace::~vecSpace() {
 }
 
-int vSpace::vecSpace::index(double x) {
+int vSpace::vecSpace::index(const double& x) const {
 	return X(x);
 }
 
-std::pair<int, int> vSpace::vecSpace::index(double x, double y) {
+std::pair<int, int> vSpace::vecSpace::index(const double& x,const double& y) const {
 	return std::make_pair(X(x),Y(y));
 }
 
@@ -93,9 +93,9 @@ const vSpace::realSpace& vSpace::vecSpace::getX() const {
 	return X;
 }
 
-double vSpace::vecSpace::operator ()(double x) {
-	return x;
-}
+//double vSpace::vecSpace::operator ()(double x) {
+//	return x;
+//}
 
 const vSpace::realSpace& vSpace::vecSpace::getY() const {
 	return Y;

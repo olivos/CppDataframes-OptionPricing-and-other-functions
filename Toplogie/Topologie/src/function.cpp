@@ -16,8 +16,8 @@ function::function() {
 
 function::function(vecSpace E) : vecSpace(E) {}
 
-double function::operator ()(double x) {
-	std::cout << "attention utilise operateur() de la classe function";
+double function::operator ()(const double& x) {
+	std::cerr << "attention utilise operateur() de la classe function";
 	return 1;
 }
 

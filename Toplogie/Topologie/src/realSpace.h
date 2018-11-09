@@ -16,7 +16,7 @@ class realSpace {
 public:
 //	constructors
 	realSpace();
-	realSpace(double xi,double xf,int nx);
+	realSpace(const double& xi,const double& xf,const int& nx);
 
 //	destructor
 	virtual ~realSpace();
@@ -37,7 +37,7 @@ public:
 
 
 //	()override
-	virtual double operator()(int n);
+	virtual double operator()(int const& n) const;
 
 	double getHx() const {
 		return hx;
