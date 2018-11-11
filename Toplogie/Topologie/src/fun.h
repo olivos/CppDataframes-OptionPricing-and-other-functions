@@ -24,7 +24,7 @@ public:
 	fun(const vecSpace& E,double (&f) (double));
 	virtual ~fun();
 
-	virtual double operator() (const double&  x);
+	virtual double operator() (const double&  x) const;
 
 
 //	override of <<

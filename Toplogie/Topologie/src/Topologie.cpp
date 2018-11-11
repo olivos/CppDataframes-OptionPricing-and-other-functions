@@ -29,10 +29,10 @@ double fu(double x){
 }
 
 int main() {
-//	vfun represents a function defined on a vecSpace and whose values
+//	fun represents a function defined on a vecSpace and whose values
 //	are stored in an armadillo mat (or vec)
-	realSpace X = realSpace(1.,10.,9);
-	fun f = fun(X,fu);
+	realSpace X{1.,10.,9};
+	fun f{X,fu};
 	cout << f;
 
 	return 0;

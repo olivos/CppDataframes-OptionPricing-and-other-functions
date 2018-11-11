@@ -19,7 +19,7 @@ public:
 
 protected :
 	function();
-	function(vecSpace E);
+	function(const vecSpace& E);
 	virtual ~function();
 };
 

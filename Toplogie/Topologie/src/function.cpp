@@ -14,11 +14,11 @@ function::function() {
 
 }
 
-function::function(vecSpace E) : vecSpace(E) {}
+function::function(const vecSpace& E) : vecSpace(E) {}
 
 double function::operator ()(const double& x) {
-	std::cerr << "attention utilise operateur() de la classe function";
-	return 1;
+	std::cerr << "uses abstract class function!!;";
+			return -1;
 }
 
 
