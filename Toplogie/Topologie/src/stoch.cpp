@@ -43,6 +43,8 @@ double stoch::V(function & Xt, double(&g)(double)) {
 	return v/n;
 }
 
+
+
 stoch::~stoch() {
 	// TODO Auto-generated destructor stub
 }

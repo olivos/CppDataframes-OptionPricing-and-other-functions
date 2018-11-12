@@ -9,6 +9,8 @@
 #include <armadillo>
 #include <vector>
 #include <math.h>
+
+#include "dataframe.h"
 #include "vecSpace.h"
 #include "realSpace.h"
 #include "fun.h"
@@ -29,11 +31,7 @@ double fu(double x){
 }
 
 int main() {
-//	fun represents a function defined on a vecSpace and whose values
-//	are stored in an armadillo mat (or vec)
-	realSpace X{1.,10.,9};
-	fun f{X,fu};
-	cout << f;
-
+//	dataframe d{1,vector<bool>{1,1,1},"/Users/oliv/Documents/GitHub/Topo/test.csv"};
+	cout << vector<bool>{1,1,1}.size();
 	return 0;
 }

@@ -17,7 +17,7 @@ public:
 	Ndist(int n = 1000);
 	virtual ~Ndist();
 
-	virtual double operator() (double x);
+	virtual double operator() (const double& x);
 private :
 	int n;
 	arma::vec N;

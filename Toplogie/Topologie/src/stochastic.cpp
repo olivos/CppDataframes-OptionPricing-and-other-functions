@@ -9,7 +9,7 @@
 
 namespace vSpace {
 
-stochastic::stochastic() {
+stochastic::stochastic():nb(0) {
 	// TODO Auto-generated constructor stub
 
 }

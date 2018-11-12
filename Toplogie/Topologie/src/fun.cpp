@@ -22,7 +22,7 @@ fun::~fun() {
 	// TODO Auto-generated destructor stub
 }
 
-double fun::operator ()(const double& x) {
+double fun::operator ()(const double& x)const {
 	return f(x);
 }
 

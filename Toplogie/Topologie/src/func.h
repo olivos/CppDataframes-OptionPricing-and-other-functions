@@ -45,6 +45,8 @@ public:
 //	computes discrete mean of a function of a realSpace, if g specified mean of g(f)
 	static double dMean(function& f , double(&g)(double) = Ide);
 
+
+
 private:
 	func();
 	virtual ~func();

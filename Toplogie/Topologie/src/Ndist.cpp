@@ -9,8 +9,9 @@
 
 namespace vSpace {
 
-Ndist::Ndist(int n ): n(n), function(realSpace(-10,10,n)) {
+Ndist::Ndist(int n ): function(realSpace(-10,10,n)),n(n) {
 	// TODO Auto-generated constructor stub
+
 	int nx = X.getNx();
 	double hx = X.getHx();
 
@@ -27,7 +28,7 @@ Ndist::~Ndist() {
 	// TODO Auto-generated destructor stub
 }
 
-double Ndist::operator ()(double x) {
+double Ndist::operator ()(const double& x) {
 	if (x < - 10.){
 		return 0;
 	}
