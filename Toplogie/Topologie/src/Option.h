@@ -23,6 +23,7 @@ public:
 	virtual double operator() (const double& t) const= 0;
 	virtual double vol(const double& t) const = 0;
 	virtual double delta(const double& t) const = 0;
+	void hedging(arma::vec & B , const bool& display = true);
 
 protected:
 	const fonction& S;

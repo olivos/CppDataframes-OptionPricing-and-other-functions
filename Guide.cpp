@@ -1,3 +1,5 @@
+// DATASTRUCTURES
+
 //	A realSpace(const double& xi,const double& xf, const int& nx) represents
 //	a discrete segment from xi to xf with a step of (xf-xi)/nx
 //	There is no vector data member, only the boundaries, nx and the step are stored
@@ -14,9 +16,9 @@
 //	There are nx+1 points !, the ith value can be accessed with (i)
 	cout << V ;
 
-	//	fun represents a function defined on a realSpace and 
-	// whose values are given by double (fu) double . 
-	// The nx in the definition of the realSpace does not matter
+//	fun represents a function defined on a realSpace and 
+// whose values are given by double (fu) double . 
+// The nx in the definition of the realSpace does not matter
 	realSpace X = realSpace(1.,10.,9);
 	fun f = fun(X,fu);
 	cout << f;
@@ -31,9 +33,38 @@
 	vfun v = vfun(X,M);
 	cout << v;
 
-	// Eu calls and puts inherit from the abstrac class Option which itself iherits from fuction, 
-	
 
+// dataframe (inspired by R dataframe) is used to load data from a csv file (With UNIX LINE ENDINGS !!)
+// the titles (1st line) are stored in a vector<string> and the numerical value(other lines) are
+// stored in an armadillo matrix
+// 1st argument  : number of rows (excluding 1st row which is always treated as titles)
+// 2nd argument : number of columns
+
+	dataframe d{2,3,"path to csv file"};
+	cout << d;
+
+// for this csv :
+price,strike,vol
+12,10,0.3
+123,120,0.2
+// the output will be  :
+   price        strike       vol   
+   1.2000e+01   1.0000e+01   3.0000e-01
+   1.2300e+02   1.2000e+02   2.0000e-01
+
+// if we only want some of the columns a vector<bool> can be used as 2nd argument :
+   	dataframe d{2,vector<bool>(false,true,false),"path to csv file"};
+// the output will be :
+   	   strike   
+   1.0000e+01
+   1.2000e+02
+
+
+
+// OPTION PRICING FEATURES
+
+// Eu calls and puts inherit from the abstrac class Option which itself iherits from fuction, 
+	
 	double price( const double& t){ /* function giving the underlying price in function of time if only known
 	 at t = t_init it is okay to use a constant function like here (But in this case do not use C(t) for other 
 	 values of t !)*/
@@ -47,7 +78,9 @@
 	double q = 0; /* continuous dividend */
 	double K = 10; /* strike */
 
-	realSpace T{0,mat,100}; /* Time space */
+	realSpace T{0,maturity,100}; /* Time space */
 	fun S(T,price); /* fonction for the price, e.g. fun or vfun   */
 	Euput P{S,K,r,sigma,q};
 	cout << P(t); /* prints the value of the put at time t given the price S(t)*/
+
+
