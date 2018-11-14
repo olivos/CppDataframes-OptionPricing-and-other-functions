@@ -4,9 +4,12 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../src/Ndist.cpp \
+../src/Eucall.cpp \
+../src/Euput.cpp \
+../src/Option.cpp \
 ../src/Topologie.cpp \
 ../src/dataframe.cpp \
+../src/fonction.cpp \
 ../src/fun.cpp \
 ../src/func.cpp \
 ../src/function.cpp \
@@ -19,9 +22,12 @@ CPP_SRCS += \
 ../src/vfun.cpp 
 
 OBJS += \
-./src/Ndist.o \
+./src/Eucall.o \
+./src/Euput.o \
+./src/Option.o \
 ./src/Topologie.o \
 ./src/dataframe.o \
+./src/fonction.o \
 ./src/fun.o \
 ./src/func.o \
 ./src/function.o \
@@ -34,9 +40,12 @@ OBJS += \
 ./src/vfun.o 
 
 CPP_DEPS += \
-./src/Ndist.d \
+./src/Eucall.d \
+./src/Euput.d \
+./src/Option.d \
 ./src/Topologie.d \
 ./src/dataframe.d \
+./src/fonction.d \
 ./src/fun.d \
 ./src/func.d \
 ./src/function.d \

@@ -13,15 +13,17 @@
 #ifndef FUN_H_
 #define FUN_H_
 
-#include "function.h"
+#include "fonction.h"
 #include "vfun.h"
 
 namespace vSpace {
 
-class fun: public function {
+class fun: public fonction {
 public:
 	fun();
-	fun(const vecSpace& E,double (&f) (double));
+//	To initialize a constant fonction
+	fun(const vecSpace& E,double (&f) (const double& x));
+
 	virtual ~fun();
 
 	virtual double operator() (const double&  x) const;
@@ -40,7 +42,7 @@ public:
 
 
 private :
-	double (&f) (double);
+	double (&f) (const double&);
 };
 
 } /* namespace vSpace */

@@ -14,7 +14,6 @@
 #include "input.h"
 #include "function.h"
 #include "func.h"
-#include "Ndist.h"
 
 namespace vSpace {
 
@@ -27,9 +26,12 @@ public:
 		return x;
 	}
 //  Variance of a function (signle path)
-	static double V( function& Xt , double(&g)(double) = Ide);
+//	static double V( function& Xt , double(&g)(double) = Ide);
 
 //	Cdf of normal density function
+//	static double phi(const double& x){
+//		return arma::normcdf(1);
+//	}
 
 
 private :

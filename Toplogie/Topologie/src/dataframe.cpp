@@ -55,7 +55,6 @@ dataframe::dataframe(const int& n, const std::vector<bool>& cols,
 	for(vector<bool>::const_iterator it = cols.begin() ; it != cols.end() ; ++it){
 	if(*it){ ++m;	}
 	}
-
 	data = mat(n,m);
 	titles = std::vector<std::string>(m);
 
@@ -64,27 +63,22 @@ dataframe::dataframe(const int& n, const std::vector<bool>& cols,
 
 //	extract the titles
 	int pos{0};
-	for(int j = 0 ; j != cols.size() ; ++j){
+	for(int j = 0 ; j != cols.size()-1 ; ++j){
 		getline(ip,temp,',');
-		cout << temp<<" ";
 		if(cols[j]){titles[pos] = temp;++pos;}
 	}
 	getline(ip,temp,'\n');
-	cout << temp<<"\n";
-	if(cols[m-1]){titles[m-1] = temp;}
+	if(cols[cols.size()-1]){titles[m-1] = temp;}
 
 //	extract the values (double)
 	for(int i = 0 ; i != n ; ++i){
 		pos = 0;
-		for(int j = 0 ; j != cols.size() ; ++j){
+		for(int j = 0 ; j != cols.size()-1 ; ++j){
 			getline(ip,temp,',');
-			cout << temp<<" ";
 			if(cols[j]){data(i,pos) = stod(temp);++pos;}
 		}
 		getline(ip,temp,'\n');
-		cout << temp<<"\n";
-
-		if(cols[pos]){data(i,pos) = stod(temp);}
+		if(cols[cols.size()-1]){data(i,pos) = stod(temp);}
 	}
 
 	ip.close();

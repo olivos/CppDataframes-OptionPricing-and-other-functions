@@ -1,7 +1,8 @@
 src/Topologie.o: ../src/Topologie.cpp ../src/dataframe.h \
-  ../src/vecSpace.h ../src/realSpace.h ../src/fun.h ../src/function.h \
-  ../src/vfun.h ../src/stoch.h ../src/stochastic.h ../src/input.h \
-  ../src/func.h ../src/Ndist.h ../src/outputC.h
+  ../src/vecSpace.h ../src/realSpace.h ../src/fun.h ../src/fonction.h \
+  ../src/vfun.h ../src/function.h ../src/stoch.h ../src/stochastic.h \
+  ../src/input.h ../src/func.h ../src/outputC.h ../src/Eucall.h \
+  ../src/Option.h ../src/Euput.h
 
 ../src/dataframe.h:
 
@@ -11,9 +12,11 @@ src/Topologie.o: ../src/Topologie.cpp ../src/dataframe.h \
 
 ../src/fun.h:
 
-../src/function.h:
+../src/fonction.h:
 
 ../src/vfun.h:
+
+../src/function.h:
 
 ../src/stoch.h:
 
@@ -23,6 +26,10 @@ src/Topologie.o: ../src/Topologie.cpp ../src/dataframe.h \
 
 ../src/func.h:
 
-../src/Ndist.h:
-
 ../src/outputC.h:
+
+../src/Eucall.h:
+
+../src/Option.h:
+
+../src/Euput.h:

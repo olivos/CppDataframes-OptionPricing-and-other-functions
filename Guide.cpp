@@ -30,3 +30,24 @@
 	}
 	vfun v = vfun(X,M);
 	cout << v;
+
+	// Eu calls and puts inherit from the abstrac class Option which itself iherits from fuction, 
+	
+
+	double price( const double& t){ /* function giving the underlying price in function of time if only known
+	 at t = t_init it is okay to use a constant function like here (But in this case do not use C(t) for other 
+	 values of t !)*/
+	return 12;
+}
+
+	double maturity = 3./12; /* maturity in years : here 3 months */
+	double t = 0; /* current time in years */
+	double sigma = 0.3; /* annualized volatility */
+	double r = 0.03; /* risk free interest rate */
+	double q = 0; /* continuous dividend */
+	double K = 10; /* strike */
+
+	realSpace T{0,mat,100}; /* Time space */
+	fun S(T,price); /* fonction for the price, e.g. fun or vfun   */
+	Euput P{S,K,r,sigma,q};
+	cout << P(t); /* prints the value of the put at time t given the price S(t)*/

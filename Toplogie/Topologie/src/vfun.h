@@ -19,11 +19,11 @@
 #ifndef VFUN_H_
 #define VFUN_H_
 
-#include "function.h"
+#include "fonction.h"
 
 namespace vSpace {
 
-class vfun: public function {
+class vfun: public fonction {
 public:
 	vfun(const vecSpace& E,const arma::mat& M);
 	vfun();

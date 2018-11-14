@@ -15,23 +15,32 @@
 #include "realSpace.h"
 #include "fun.h"
 #include "vfun.h"
+#include "function.h"
+#include "fonction.h"
 #include "stoch.h"
 #include "func.h"
-#include "Ndist.h"
+
 #include "outputC.h"
 #include "input.h"
+
+#include "Eucall.h"
+#include "Euput.h"
 
 
 using namespace arma;
 using namespace std;
 using namespace vSpace;
 
-double fu(double x){
-	return pow(x,2);
+//	redo func
+
+double price( const double& t){
+	return 250;
 }
 
 int main() {
-//	dataframe d{1,vector<bool>{1,1,1},"/Users/oliv/Documents/GitHub/Topo/test.csv"};
-	cout << vector<bool>{1,1,1}.size();
-	return 0;
+
+	dataframe d{1,vector<bool>{true,false,true},"/Users/oliv/Documents/GitHub/Topo/test.csv"};
+	cout << d;
+
+
 }

@@ -8,10 +8,10 @@
 #include "vfun.h"
 
 namespace vSpace {
-vfun::vfun():function(vecSpace()), M(arma::mat()) {
+vfun::vfun():fonction(vecSpace()), M(arma::mat()) {
 }
 
-vfun::vfun(const vecSpace& E,const arma::mat&  M): function(E),M(M)  {
+vfun::vfun(const vecSpace& E,const arma::mat&  M): fonction(E),M(M)  {
 }
 
 vfun::~vfun() {
