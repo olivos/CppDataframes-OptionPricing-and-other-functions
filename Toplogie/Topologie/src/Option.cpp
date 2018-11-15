@@ -11,7 +11,7 @@ using namespace arma;
 
 namespace vSpace {
 
-Option::Option():fonction(),S(fun()),K(0),T(0),r(0) {
+Option::Option():fonction(),S{fun()},K(0),r(0),T(0) {
 	// TODO Auto-generated constructor stub
 
 }
@@ -47,7 +47,7 @@ void Option::hedging(arma::vec& B , const bool& display) {
 		cout << "Step"<<i << "St " << S(X(i)) << "after interests" << B(i);
 		}
 
-		B(i) = B(i) + delta(X(i))*S(X(i)); /* Selling theta underlying */
+		B(i) = B(i) + delta(X(i-1))*S(X(i)); /* Selling theta underlying */
 
 		if(display){
 		cout << "after sale" << B(i);
@@ -67,7 +67,7 @@ void Option::hedging(arma::vec& B , const bool& display) {
 	if(display){
 	cout << "Last Step St " << S(X(nH)) << "after interests" << B(nH);
 	}
-	B(nH) = B(nH) + delta(X(nH))*S(X(nH-1)); /* Selling theta underlying */
+	B(nH) = B(nH) + delta(X(nH-1))*S(X(nH)); /* Selling theta underlying */
 
 	cout << "after sale" << B(nH)<< "\n";
 
