@@ -10,8 +10,8 @@
 using namespace arma;
 
 namespace vSpace {
-
-Option::Option():fonction(),S{fun()},K(0),r(0),T(0) {
+fun ide{};
+Option::Option():fonction(),S{ide},K(0),r(0),T(0) {
 	// TODO Auto-generated constructor stub
 
 }

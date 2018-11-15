@@ -84,3 +84,32 @@ price,strike,vol
 	cout << P(t); /* prints the value of the put at time t given the price S(t)*/
 
 
+
+	// Hedging a Eucall with Black Scholes on data imported from a csv file
+
+	double maturity = 1; /* maturity in years : here 1 year */
+	double sigma = 0.137; /* annualized volatility */
+	double r = 0.03; /* risk free interest rate */
+	double q = 0; /* continuous dividend */
+	double K = 2540; /* strike */
+
+	int nx = 251; /*nx : parameter of realSpace
+
+
+	must be number of points -1 !! because nx is such that maturity/nx = timeStep */
+
+	realSpace T{0,maturity,nx}; /* Time space */
+	dataframe Price(nx+1,1,"/Users/oliv/Documents/GitHub/Topo/snp500.csv");/* price data */
+//	cout << Price;
+
+	vfun S(T,Price.getData()); /* fonction for the price, e.g. fun or vfun   */
+
+	Eucall C{S,K,r,sigma,q};
+
+	vec HedgingPortfolio(nx+1); /* Creates the vector containing the value of the Hedging portfolio
+	 which will be passed by ref to the hedging method */
+//
+	C.hedging(HedgingPortfolio); /* performs the hedging , display can vbe disable by prodiding a
+	false bool as second argument*/
+
+

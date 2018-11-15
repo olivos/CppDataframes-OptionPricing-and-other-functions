@@ -22,7 +22,7 @@ public:
 //		return x;
 //	}
 //
-//	static double max( function & f); /* finds max value of f : realSpace -> realSpace  */
+	static double max(const fonction & f); /* finds max value of f : realSpace -> realSpace  */
 //	static double min( function & f); /* finds max value of f : realSpace -> realSpace */
 //
 //	static realSpace OutputSpace(function & f, int n = 0); /* returns the output set of f : realSpace -> realSpace

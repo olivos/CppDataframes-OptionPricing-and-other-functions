@@ -15,6 +15,23 @@ func::func() {
 	// TODO Auto-generated constructor stub
 
 }
+
+double func::max(const fonction& f) {
+	if (f.getDim() != 1){
+		throw "max only works for 1 dimensional input space!";
+	}
+	realSpace X = f.getX();
+	int n = X.getNx();
+	double max = f(X(0));
+
+	for (int i = 1 ; i < n+1 ; i++){
+		if (f(X(i))> max){
+			max = f(X(i));
+		}
+	}
+	return max;
+}
+
 //
 //double func::diff(function& f, double x) {
 //	int index = f.index(x);
@@ -123,22 +140,7 @@ func::func() {
 //	return prim(f,new_X)(new_nx);
 //}
 //
-//double func::max(function& f) {
-//	if (f.getDim() != 1){
-//		throw "max only works for 1 dimensional input space!";
-//	}
-//	realSpace X = f.getX();
-//	int n = X.getNx();
-//	double max = f(X(0));
-//
-//	for (int i = 1 ; i < n+1 ; i++){
-//		if (f(X(i))> max){
-//			max = f(X(i));
-//		}
-//	}
-//	return max;
-//
-//}
+
 //
 //double func::min(function& f) {
 //	if (f.getDim() != 1){
