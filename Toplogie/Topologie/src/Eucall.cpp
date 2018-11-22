@@ -10,10 +10,10 @@ using namespace arma;
 
 namespace vSpace {
 
-Eucall::Eucall():Option(),sigma(0) {
-	// TODO Auto-generated constructor stub
-
-}
+//Eucall::Eucall():Option(),sigma(0) {
+//	// TODO Auto-generated constructor stub
+//
+//}
 
 Eucall::Eucall(const fonction& S, const double& K, const double& r, const double& sigma, const double& q):Option(S,K,r),sigma(sigma),q(q) {
 }
@@ -31,7 +31,7 @@ double Eucall::vol(const double& t) const {
 }
 
 double Eucall::delta(const double& t) const {
-	return normcdf(d1(t));
+	return exp(-q*(T-t))*normcdf(d1(t));
 }
 
 } /* namespace vSpace */

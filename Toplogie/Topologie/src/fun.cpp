@@ -8,11 +8,8 @@
 
 namespace vSpace {
 
-double identity (double const& x){
-	return x;
-}
 
-fun::fun(): fonction(vecSpace()),f(identity) {}
+//fun::fun(): fonction(vecSpace()),f(identity) {}
 
 fun::fun(const vecSpace& E, double (&f)(const double&)): fonction(E),f(f)
 {

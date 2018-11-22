@@ -14,7 +14,7 @@ namespace vSpace {
 
 class fonction: public vecSpace {
 public:
-	fonction();
+//	fonction();
 	fonction(const vecSpace& E);
 	virtual ~fonction();
 

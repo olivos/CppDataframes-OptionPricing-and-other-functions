@@ -9,10 +9,10 @@
 
 namespace vSpace {
 
-fonction::fonction():vecSpace(){
-	// TODO Auto-generated constructor stub
-
-}
+//fonction::fonction():vecSpace(){
+//	// TODO Auto-generated constructor stub
+//
+//}
 
 fonction::fonction(const vecSpace& E):vecSpace(E) {
 }

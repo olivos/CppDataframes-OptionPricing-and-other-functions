@@ -26,7 +26,7 @@ namespace vSpace {
 class vfun: public fonction {
 public:
 	vfun(const vecSpace& E,const arma::mat& M);
-	vfun();
+//	vfun();
 	virtual ~vfun();
 //	virtual arma::vec diff ();
 
@@ -42,9 +42,9 @@ public:
 
     		os << "[";
     		for(int j = 0 ; j < nx ; j++){
-    			os << E.M(j)<< ",";
+    			os << E.operator()(E.X(j))<< ",";
     		}
-			os << E.M(nx)<<  "]";return os;}
+			os << E.operator()(E.X(nx))<<  "]";return os;}
     	case 2 : {
 
     		int nx = E.sizes(0);
@@ -55,15 +55,15 @@ public:
 
 				os << "[";
 				for(int j = 0 ; j < nx ; j++){
-					os << E.M(i,j)<< ",";
+					os << E.operator()(E.Y(i),E.X(j))<< ",";
 				}
-				os << E.M(i,nx)<<  "],"; }
+				os << E.operator()(E.Y(i),E.X(nx))<<  "],"; }
 			os << "[";
 
 			for(int j = 0 ; j < nx ; j++){
-				os << E.M(ny,j)<< ",";
+				os << E.operator()(E.Y(ny),E.X(j))<< ",";
 			}
-			os << E.M(ny,nx)<<  "]]"; return os;
+			os << E.operator()(E.Y(ny),E.X(nx))<<  "]]"; return os;
 
     		}
 

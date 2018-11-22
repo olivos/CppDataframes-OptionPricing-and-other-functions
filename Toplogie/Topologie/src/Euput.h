@@ -14,12 +14,12 @@ namespace vSpace {
 
 class Euput: public Option {
 public:
-	Euput();
+//	Euput();
 	Euput(const fonction& S, const double& K, const double& r, const double& sigma, const double& q = 0 );
 	virtual ~Euput();
 
 	virtual double operator() (const double& t) const;
-	virtual double vol(const double& t) const;
+	virtual double vol(const double& t)const;
 	virtual double delta(const double& t) const;
 private :
 	const double sigma;

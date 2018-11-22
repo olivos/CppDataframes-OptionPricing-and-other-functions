@@ -20,8 +20,7 @@ namespace vSpace {
 
 class fun: public fonction {
 public:
-	fun();
-//	To initialize a constant fonction
+//	fun();
 	fun(const vecSpace& E,double (&f) (const double& x));
 
 	virtual ~fun();

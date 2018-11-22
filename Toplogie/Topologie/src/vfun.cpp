@@ -8,8 +8,8 @@
 #include "vfun.h"
 
 namespace vSpace {
-vfun::vfun():fonction(vecSpace()), M(arma::mat()) {
-}
+//vfun::vfun():fonction(vecSpace()), M(arma::mat()) {
+//}
 
 vfun::vfun(const vecSpace& E,const arma::mat&  M): fonction(E),M(M)  {
 }
@@ -19,7 +19,7 @@ vfun::~vfun() {
 }
 
 double vSpace::vfun::operator ()(const double& x) const {
-		int i = (x-init(0))/deltas(0);
+		int i = round((x-init(0))/deltas(0));
 		return M(i);
 }
 

@@ -10,11 +10,11 @@
 using namespace arma;
 
 namespace vSpace {
-fun ide{};
-Option::Option():fonction(),S{ide},K(0),r(0),T(0) {
-	// TODO Auto-generated constructor stub
-
-}
+//fun ide{};
+//Option::Option():fonction(),S{ide},K(0),r(0),T(0) {
+//	// TODO Auto-generated constructor stub
+//
+//}
 
 Option::Option(const fonction& S, const double& K,const double& r):fonction(S),S(S),K(K),r(r){
 	T = final(0);
@@ -26,8 +26,6 @@ Option::~Option() {
 
 void Option::hedging(arma::vec& B , const bool& display) {
 	int nH = sizes(0);
-
-	B = vec(nH+1);/* vector representing evolution of the value of the hedgers bank account (does not count tha value of the underlying stock he holds*/
 
 //	Initialization
 
@@ -68,15 +66,28 @@ void Option::hedging(arma::vec& B , const bool& display) {
 	cout << "Last Step St " << S(X(nH)) << "after interests" << B(nH);
 	}
 	B(nH) = B(nH) + delta(X(nH-1))*S(X(nH)); /* Selling theta underlying */
-
-	cout << "after sale" << B(nH)<< "\n";
+	if(display){
+	cout << "after sale" << B(nH)<< "\n";}
 
 //	If the option ends up in the money broker needs to pay the option owner
 	if ( this->operator ()(X(nH)) > 0 ){
 		B(nH) = B(nH) - this->operator ()( X(nH) );
-		cout << "In the money";
+		if(display){
+		cout << "In the money";}
 	}
-	cout << "after closing the position"<< B(nH)<< "\n";
+	if(display){
+	cout << "after closing the position";}
+	cout<< B(nH)<< "\n";
+}
+
+void Option::printDelta() {
+	cout << '[';
+	for(int i = 0 ; i != sizes(0) ; ++i){
+		cout << delta(X(i)) << ',';
+	}
+	cout << delta( X(sizes(0)) ) << ']';
 }
 
 } /* namespace vSpace */
+
+

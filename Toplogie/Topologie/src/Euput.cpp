@@ -10,10 +10,10 @@ using namespace arma;
 
 namespace vSpace {
 
-Euput::Euput():Option(),sigma(0) {
-	// TODO Auto-generated constructor stub
-
-}
+//Euput::Euput():Option(),sigma(0) {
+//	// TODO Auto-generated constructor stub
+//
+//}
 
 Euput::Euput(const fonction& S, const double& K, const double& r,
 		const double& sigma, const double& q):Option(S,K,r),sigma(sigma),q(q) {
@@ -29,12 +29,12 @@ double Euput::operator ()(const double& t) const {
 
 }
 
-double Euput::vol(const double& t) const {
+double Euput::vol(const double& t) const{
 	return sigma;
 }
 
 double Euput::delta(const double& t) const {
-	return normcdf(d1(t));
+	return -exp(-q*(T-t))*normcdf(-d1(t));
 }
 
 } /* namespace vSpace */

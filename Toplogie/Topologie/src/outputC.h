@@ -18,6 +18,8 @@
 namespace vSpace {
 class outputC {
 public:
+
+
 	template<class T1, class T2>
 	static void plot(T1 x,T2 y) {
 		std::cout << "import matplotlib.pyplot as plt"<<"\n\n";

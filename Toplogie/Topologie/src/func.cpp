@@ -32,6 +32,13 @@ double func::max(const fonction& f) {
 	return max;
 }
 
+double func::mavg(const double& avg, const double& next, const int& n,std::queue<double>& q) {
+	double res = (avg*n - q.front() + next)/n;
+	q.pop();
+	q.push(next);
+	return res;
+}
+
 //
 //double func::diff(function& f, double x) {
 //	int index = f.index(x);
@@ -92,21 +99,21 @@ double func::max(const fonction& f) {
 //
 //	return V;
 //}
-//
-//arma::vec func::prim(function& f) {
-//	realSpace X = f.getX();
-//	int nx = X.getNx();
-//	double hx = X.getHx();
-//
-//	arma::vec V = arma::vec(nx+1);
-//	V(0) = 0;
-//
-//	for(int j = 1 ;  j < nx+1 ; j++ ){
-//		V(j) = (f(X(j))-f(X(j-1)))*hx/2 + f(X(j-1))*hx + V(j-1);
-//	}
-//	return V;
-//
-//}
+
+arma::vec func::prim(const fonction& f, double (&g) (const double&)) {
+	realSpace X = f.getX();
+	int nx = X.getNx();
+	double hx = X.getHx();
+
+	arma::vec V = arma::vec(nx+1);
+	V(0) = 0;
+
+	for(int j = 1 ;  j < nx+1 ; j++ ){
+		V(j) = ( g( f(X(j)) )- g( f(X(j-1)) ) )*hx/2 + g(f(X(j-1)))*hx + V(j-1);
+	}
+	return V;
+
+}
 //
 //arma::vec func::prim(function& f, realSpace new_X) {
 //	realSpace X = new_X;
